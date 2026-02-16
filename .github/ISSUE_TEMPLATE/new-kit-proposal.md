@@ -9,9 +9,9 @@ labels: enhancement, new-kit
 What would you call this kit?
 
 ## KIT Category
-- [ ] Knowledge — helps learn and retain information
-- [ ] Intuition — develops judgment and self-awareness
-- [ ] Tooling — solves a specific practical problem
+- [ ] Knowledge  -  helps learn and retain information
+- [ ] Intuition  -  develops judgment and self-awareness
+- [ ] Tooling  -  solves a specific practical problem
 
 ## Problem
 What student problem does this kit solve?

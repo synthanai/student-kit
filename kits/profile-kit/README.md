@@ -1,6 +1,6 @@
 # 🧬 Profile Kit
 
-**Build your 3×3 AI profile** — a personalised instruction set that transforms ChatGPT from a generic assistant into an AI tuned to YOUR brain.
+**Build your 3×3 AI profile**  -  a personalised instruction set that transforms ChatGPT from a generic assistant into an AI tuned to YOUR brain.
 
 ## What It Does
 
@@ -13,9 +13,9 @@ Profile Kit walks you through three 15-20 minute conversations that map how you 
 | 💼 **Professional** | How you absorb work knowledge | How you solve work problems | How you deliver results |
 
 At the end of each conversation, you get a **PIC AI instruction set**:
-- **Layer 1: Persona** — who you are (your patterns)
-- **Layer 2: Interface** — how AI should serve you (your preferences)
-- **Layer 3: Compass** — how AI should grow you (70% serve, 30% stretch)
+- **Layer 1: Persona**  -  who you are (your patterns)
+- **Layer 2: Interface**  -  how AI should serve you (your preferences)
+- **Layer 3: Compass**  -  how AI should grow you (70% serve, 30% stretch)
 
 ## Quick Start
 
@@ -48,8 +48,8 @@ Open each GPT and have a 15-20 minute conversation. The GPT will:
 
 1. **Create a new ChatGPT Project** (e.g., "My Study Partner")
 2. **Paste** your instruction set into the Project Instructions
-3. **Start chatting** — every conversation is now personalised to you
-4. **Memory does the rest** — your AI saves growth observations automatically
+3. **Start chatting**  -  every conversation is now personalised to you
+4. **Memory does the rest**  -  your AI saves growth observations automatically
 
 ### Step 4: Evolve
 
@@ -88,7 +88,7 @@ profile-kit/
 ## FAQ
 
 **Do I need ChatGPT Plus?**
-Yes — Custom GPTs and Projects require ChatGPT Plus.
+Yes  -  Custom GPTs and Projects require ChatGPT Plus.
 
 **How long does each profile take?**
 15-20 minutes of honest conversation.
@@ -97,4 +97,4 @@ Yes — Custom GPTs and Projects require ChatGPT Plus.
 Yes! Start with Personal. Add Social and Professional when you're ready.
 
 **Does it work with other AI tools?**
-The instruction set is plain text — you can paste it into any AI assistant that supports system instructions (Claude Projects, Gemini, etc.).
+The instruction set is plain text  -  you can paste it into any AI assistant that supports system instructions (Claude Projects, Gemini, etc.).

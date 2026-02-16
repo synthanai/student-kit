@@ -1,4 +1,4 @@
-# Facilitator Guide — AI Profiling Seminar
+# Facilitator Guide  -  AI Profiling Seminar
 
 ## Pre-Seminar Setup (30 min before)
 
@@ -30,20 +30,20 @@ If the responses look too similar, make the sample profile more specific.
 ## Delivery Tips
 
 ### The Hook (5 min)
-- Open with the live generic ChatGPT demo — make it boring on purpose
+- Open with the live generic ChatGPT demo  -  make it boring on purpose
 - The line *"If AI doesn't know who you are, it treats you like everyone else"* should land like a punch
-- Don't explain the fix yet — just create the problem
+- Don't explain the fix yet  -  just create the problem
 
 ### The Matrix (8 min)
 - Draw or project the 3×3 grid
-- Pick ONE cell to illustrate deeply (e.g., Personal Input) — don't explain all 9
-- The AI vulnerability overlay is the "aha" moment — lead with *"Professional Output is the cell AI replaces fastest"*
+- Pick ONE cell to illustrate deeply (e.g., Personal Input)  -  don't explain all 9
+- The AI vulnerability overlay is the "aha" moment  -  lead with *"Professional Output is the cell AI replaces fastest"*
 
 ### The Demo (10 min)
-- This is the WOW moment — take your time, don't rush
+- This is the WOW moment  -  take your time, don't rush
 - Show Project A response first (boring, generic) → pause → then Project B (personalised, specific)
 - Let the room react between each comparison
-- Demo 3 is the key one — when the profiled AI gently stretches (suggests narrative writing instead of bullets), students see the Compass in action
+- Demo 3 is the key one  -  when the profiled AI gently stretches (suggests narrative writing instead of bullets), students see the Compass in action
 
 ### Hands-On (20 min)
 - Walk the room! Students will have questions
@@ -53,11 +53,11 @@ If the responses look too similar, make the sample profile more specific.
 
 ### The Reveal (7 min)
 - Guide them through creating a Project and pasting
-- Their first personalised response is the payoff — give them a moment to read it
+- Their first personalised response is the payoff  -  give them a moment to read it
 - Ask 1-2 people to share: "How was that different from normal ChatGPT?"
 
 ### The Close (5 min)
-- The one-liner they take away: *"In the AI era, the people who win aren't the ones who use AI the most — they're the ones AI understands the best."*
+- The one-liner they take away: *"In the AI era, the people who win aren't the ones who use AI the most  -  they're the ones AI understands the best."*
 - Project the QR code and leave it up during Q&A
 
 ## Troubleshooting
@@ -65,6 +65,6 @@ If the responses look too similar, make the sample profile more specific.
 | Issue | Solution |
 |-------|----------|
 | Student doesn't have ChatGPT Plus | They can still run the profile conversation; pair with a Plus user for the paste-and-test step |
-| GPT responses are too slow | Busy period — have a backup screenshot of expected results |
+| GPT responses are too slow | Busy period  -  have a backup screenshot of expected results |
 | Room has no Wi-Fi | Pre-download materials; focus on demo, defer hands-on to after seminar |
-| Student says "my profile seems wrong" | Profiles evolve — they can redo it anytime. First attempt is always rough |
+| Student says "my profile seems wrong" | Profiles evolve  -  they can redo it anytime. First attempt is always rough |

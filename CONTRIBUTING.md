@@ -1,6 +1,6 @@
 # Contributing to Student Kit
 
-Thank you for your interest in contributing! Student Kit is an open-source project and we welcome contributions from everyone — students, educators, developers, and AI enthusiasts.
+Thank you for your interest in contributing! Student Kit is an open-source project and we welcome contributions from everyone  -  students, educators, developers, and AI enthusiasts.
 
 ## How to Contribute
 
@@ -28,14 +28,14 @@ Every kit follows the same structure. See [docs/kit-template.md](docs/kit-templa
 ```
 kits/your-kit-name/
 ├── README.md              # What it does, how to use it, deployment guide
-├── [domain-folders]/      # Self-contained modules within the kit
+├── [domain-folders]/      # Standalone modules within the kit
 │   ├── instructions.md    # Core instructions (if GPT-based)
 │   └── [knowledge-files]  # Supporting files
 └── CHANGELOG.md           # Version history (optional for v1)
 ```
 
 **Required files:**
-- `README.md` — must explain what the kit does, who it's for, and how to use it
+- `README.md`  -  must explain what the kit does, who it's for, and how to use it
 - At least one functional module
 
 ## Workshop Guidelines
@@ -57,7 +57,7 @@ workshops/your-workshop-name/
 
 ## Code of Conduct
 
-Be kind, be constructive, be helpful. We're building tools for students — let's make the community as welcoming as the tools.
+Be kind, be constructive, be helpful. We're building tools for students  -  let's make the community as welcoming as the tools.
 
 ## Questions?
 

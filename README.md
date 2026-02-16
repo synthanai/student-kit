@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">🎓 Student Kit</h1>
-  <p align="center"><strong>Open-source AI toolkit for students — build your profile, sharpen your skills, navigate your career.</strong></p>
+  <p align="center"><strong>Open-source AI toolkit for students  -  build your profile, sharpen your skills, navigate your career.</strong></p>
   <p align="center">
     <a href="#available-kits">Kits</a> •
     <a href="#quick-start">Quick Start</a> •
@@ -14,16 +14,16 @@
 
 ## What Is Student Kit?
 
-Student Kit is a collection of **open-source AI tools** designed specifically for students. Each tool (called a **kit**) is self-contained, free to use, and built to solve a real student problem.
+Student Kit is a collection of **open-source AI tools** designed specifically for students. Each tool (called a **kit**) is standalone, free to use, and built to solve a real student problem.
 
-The first kit — **Profile Kit** — helps you build a personalised AI that actually understands how you learn, think, and work. Instead of using generic ChatGPT, you create an AI tuned to YOUR brain.
+The first kit  -  **Profile Kit**  -  helps you build a personalised AI that actually understands how you learn, think, and work. Instead of using generic ChatGPT, you create an AI tuned to YOUR brain.
 
 > **KIT** = **K**nowledge · **I**ntuition · **T**ooling
 >
 > Every kit in this repo falls into one of these three categories:
-> - **Knowledge** — tools that help you learn and retain information better
-> - **Intuition** — tools that develop your judgment, self-awareness, and decision-making
-> - **Tooling** — practical AI tools that make your student life more productive
+> - **Knowledge**  -  tools that help you learn and retain information better
+> - **Intuition**  -  tools that develop your judgment, self-awareness, and decision-making
+> - **Tooling**  -  practical AI tools that make your student life more productive
 
 ## Available Kits
 
@@ -48,7 +48,7 @@ Your AI will:
 - ✅ Deliver content the way YOUR brain absorbs it
 - ✅ Frame problems the way YOU think through them
 - ✅ Communicate the way YOU prefer
-- ✅ Help you grow in areas you choose — gently, over time
+- ✅ Help you grow in areas you choose  -  gently, over time
 
 ## Workshops
 
@@ -60,14 +60,14 @@ Workshops include facilitator guides, timed outlines, and all materials needed t
 
 ## Philosophy
 
-**In the AI era, the students who win aren't the ones who use AI the most — they're the ones AI understands the best.**
+**In the AI era, the students who win aren't the ones who use AI the most  -  they're the ones AI understands the best.**
 
 Most students use ChatGPT the same way: open a new chat, ask a question, get a generic answer. Student Kit changes that. By profiling how you learn, think, communicate, and work, you give AI the context it needs to serve you personally.
 
 Your profile has a PIC strategy:
-- **Layer 1: Persona** — who you are (your patterns)
-- **Layer 2: Interface** — how AI should serve you (your preferences)
-- **Layer 3: Compass** — how AI should grow you (your development areas)
+- **Layer 1: Persona**  -  who you are (your patterns)
+- **Layer 2: Interface**  -  how AI should serve you (your preferences)
+- **Layer 3: Compass**  -  how AI should grow you (your development areas)
 
 Read more: [Philosophy](docs/philosophy.md) · [The 3×3 Matrix](docs/3x3-matrix.md)
 
@@ -95,7 +95,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
-[MIT](LICENSE) — free to use, modify, and distribute.
+[MIT](LICENSE)  -  free to use, modify, and distribute.
 
 ---
 
