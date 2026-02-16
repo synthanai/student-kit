@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Doesn't Know You. Yet. — Student Kit Seminar</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Tamil:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* =============================================
+           DESIGN TOKENS — Terminal Scholar
+           ============================================= */
+        :root {
+            --bg-base: #0a0a0a;
+            --bg-slide: #0f0f0f;
+            --bg-card: #161616;
+            --bg-card-hover: #1a1a1a;
+
+            --amber: #F59E0B;
+            --amber-glow: rgba(245, 158, 11, 0.15);
+            --amber-dim: rgba(245, 158, 11, 0.4);
+            --teal: #14B8A6;
+            --teal-glow: rgba(20, 184, 166, 0.12);
+            --violet: #8B5CF6;
+            --violet-glow: rgba(139, 92, 246, 0.12);
+            --red-soft: #EF4444;
+
+            --text-primary: #E5E5E5;
+            --text-secondary: #A3A3A3;
+            --text-muted: #6B7280;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-amber: rgba(245, 158, 11, 0.2);
+
+            --font-display: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --font-tamil: 'Noto Sans Tamil', sans-serif;
+        }
+
+        /* =============================================
+           RESET & BASE
+           ============================================= */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* =============================================
+           SLIDE CONTAINER
+           ============================================= */
+        .deck {
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+            background: var(--bg-base);
+            overflow: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* =============================================
+           PROGRESS BAR
+           ============================================= */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--amber);
+            transition: width 0.4s ease;
+            z-index: 100;
+            box-shadow: 0 0 12px var(--amber-glow);
+        }
+
+        /* =============================================
+           SLIDE NUMBER
+           ============================================= */
+        .slide-number {
+            position: fixed;
+            bottom: 16px;
+            right: 24px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            z-index: 100;
+            letter-spacing: 1px;
+        }
+
+        /* =============================================
+           MODE BADGE
+           ============================================= */
+        .mode-badge {
+            position: absolute;
+            top: 32px;
+            left: 40px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .mode-badge.talk {
+            color: var(--amber);
+            border-color: var(--border-amber);
+            background: var(--amber-glow);
+        }
+
+        .mode-badge.demo {
+            color: var(--teal);
+            border-color: rgba(20, 184, 166, 0.3);
+            background: var(--teal-glow);
+        }
+
+        .mode-badge.build {
+            color: var(--violet);
+            border-color: rgba(139, 92, 246, 0.3);
+            background: var(--violet-glow);
+        }
+
+        .mode-badge.interact {
+            color: #22D3EE;
+            border-color: rgba(34, 211, 238, 0.3);
+            background: rgba(34, 211, 238, 0.1);
+        }
+
+        /* =============================================
+           TIMER
+           ============================================= */
+        .timer {
+            position: absolute;
+            top: 32px;
+            right: 40px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* =============================================
+           TYPOGRAPHY
+           ============================================= */
+        .slide-title {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(36px, 5vw, 64px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .slide-title .accent {
+            color: var(--amber);
+        }
+
+        .slide-title .teal {
+            color: var(--teal);
+        }
+
+        .slide-title .violet {
+            color: var(--violet);
+        }
+
+        .slide-subtitle {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 700px;
+            margin-bottom: 24px;
+        }
+
+        .slide-body {
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 680px;
+        }
+
+        .tamil {
+            font-family: var(--font-tamil);
+            font-weight: 600;
+            color: var(--amber);
+            font-size: clamp(22px, 3vw, 32px);
+            line-height: 1.6;
+        }
+
+        .tamil-translation {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-top: 8px;
+        }
+
+        .kural-ref {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 12px;
+        }
+
+        .big-number {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: clamp(80px, 12vw, 160px);
+            color: var(--amber);
+            line-height: 1;
+            letter-spacing: -6px;
+            opacity: 0.9;
+        }
+
+        .big-quote {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: clamp(28px, 4vw, 48px);
+            line-height: 1.3;
+            letter-spacing: -1px;
+            max-width: 800px;
+        }
+
+        /* =============================================
+           CODE BLOCK (for prompts)
+           ============================================= */
+        .prompt-block {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 28px;
+            text-align: left;
+            max-width: 640px;
+            width: 100%;
+            margin: 16px 0;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .prompt-block::before {
+            content: '>';
+            color: var(--amber);
+            margin-right: 12px;
+            font-weight: 600;
+        }
+
+        .prompt-block.ai-generic {
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .prompt-block.ai-generic::before {
+            content: '⊘';
+            color: var(--red-soft);
+        }
+
+        .prompt-block.ai-profiled {
+            border-color: rgba(20, 184, 166, 0.3);
+        }
+
+        .prompt-block.ai-profiled::before {
+            content: '✦';
+            color: var(--teal);
+        }
+
+        /* =============================================
+           MATRIX TABLE
+           ============================================= */
+        .matrix-table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 860px;
+            margin: 24px 0;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .matrix-table th {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: var(--bg-card);
+        }
+
+        .matrix-table td {
+            color: var(--text-secondary);
+        }
+
+        .matrix-table td:first-child {
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .matrix-row-personal td {
+            border-left: 3px solid var(--amber);
+        }
+
+        .matrix-row-social td {
+            border-left: 3px solid var(--teal);
+        }
+
+        .matrix-row-professional td {
+            border-left: 3px solid var(--violet);
+        }
+
+        /* =============================================
+           FLOW DIAGRAM
+           ============================================= */
+        .flow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-mono);
+            font-size: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .flow-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+
+        .flow-arrow {
+            color: var(--amber);
+            font-size: 18px;
+        }
+
+        /* =============================================
+           PIC CARD
+           ============================================= */
+        .pic-cards {
+            display: flex;
+            gap: 24px;
+            margin: 28px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pic-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            width: 220px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .pic-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .pic-card.personal {
+            border-top: 3px solid var(--amber);
+        }
+
+        .pic-card.social {
+            border-top: 3px solid var(--teal);
+        }
+
+        .pic-card.professional {
+            border-top: 3px solid var(--violet);
+        }
+
+        .pic-card .emoji {
+            font-size: 28px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .pic-card .card-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .pic-card .card-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .pic-card .card-ai {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .pic-card.personal .card-ai {
+            color: var(--amber);
+            background: var(--amber-glow);
+        }
+
+        .pic-card.social .card-ai {
+            color: var(--teal);
+            background: var(--teal-glow);
+        }
+
+        .pic-card.professional .card-ai {
+            color: var(--violet);
+            background: var(--violet-glow);
+        }
+
+        /* =============================================
+           QR PLACEHOLDER
+           ============================================= */
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            border: 2px dashed var(--border-amber);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            margin: 20px auto;
+        }
+
+        .qr-placeholder .qr-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+
+        /* =============================================
+           POLL QUESTIONS
+           ============================================= */
+        .poll-options {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .poll-option {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 28px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: default;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .poll-option:hover {
+            border-color: var(--amber-dim);
+            background: var(--amber-glow);
+        }
+
+        .poll-option .option-emoji {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* =============================================
+           COMPARISON LAYOUT
+           ============================================= */
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            width: 100%;
+            max-width: 900px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .compare-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .compare-panel.generic {
+            border-top: 3px solid var(--red-soft);
+        }
+
+        .compare-panel.profiled {
+            border-top: 3px solid var(--teal);
+        }
+
+        .compare-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .compare-panel.generic .compare-label {
+            color: var(--red-soft);
+        }
+
+        .compare-panel.profiled .compare-label {
+            color: var(--teal);
+        }
+
+        .compare-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .compare-text .stretch {
+            color: var(--violet);
+            font-weight: 600;
+        }
+
+        /* =============================================
+           SCROLL HINT (title slide only)
+           ============================================= */
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s ease infinite;
+        }
+
+        .scroll-hint span {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .scroll-hint .arrow {
+            font-size: 20px;
+            color: var(--amber-dim);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(6px);
+            }
+        }
+
+        /* =============================================
+           PRESENTER TAG
+           ============================================= */
+        .presenter-tag {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 32px;
+        }
+
+        .presenter-tag .name {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* =============================================
+           HELPER CLASSES
+           ============================================= */
+        .mt-16 {
+            margin-top: 16px;
+        }
+
+        .mt-24 {
+            margin-top: 24px;
+        }
+
+        .mt-32 {
+            margin-top: 32px;
+        }
+
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+
+        .mb-24 {
+            margin-bottom: 24px;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .highlight-amber {
+            color: var(--amber);
+        }
+
+        .highlight-teal {
+            color: var(--teal);
+        }
+
+        .highlight-violet {
+            color: var(--violet);
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--amber);
+            margin: 24px auto;
+            opacity: 0.5;
+        }
+
+        .small-text {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .seventy-thirty {
+            display: flex;
+            height: 24px;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            margin: 16px auto;
+        }
+
+        .seventy-thirty .serve {
+            width: 70%;
+            background: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            color: #0a0a0a;
+        }
+
+        .seventy-thirty .stretch {
+            width: 30%;
+            background: var(--violet);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* =============================================
+           PHONE MOCKUPS (iOS & Android)
+           ============================================= */
+        .phones {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .phone {
+            width: 300px;
+            border-radius: 28px;
+            border: 2px solid var(--border);
+            background: #1a1a1a;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone.generalist {
+            border-color: rgba(239, 68, 68, 0.25);
+        }
+
+        .phone.specialist {
+            border-color: rgba(20, 184, 166, 0.3);
+        }
+
+        .phone-header {
+            padding: 10px 16px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            background: #111;
+        }
+
+        .phone-header .phone-os {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .phone.generalist .phone-os {
+            color: var(--red-soft);
+        }
+
+        .phone.specialist .phone-os {
+            color: var(--teal);
+        }
+
+        .phone-header .phone-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .phone-prompt {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            background: #141414;
+        }
+
+        .phone-prompt-text {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .phone-prompt-text::before {
+            content: '> ';
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        .phone-response {
+            padding: 14px 16px;
+            min-height: 120px;
+        }
+
+        .phone-response p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .phone-response p:last-child {
+            margin-bottom: 0;
+        }
+
+        .phone-response .highlight {
+            font-weight: 600;
+        }
+
+        .phone.generalist .phone-response .highlight {
+            color: var(--text-muted);
+        }
+
+        .phone.specialist .phone-response .highlight {
+            color: var(--teal);
+        }
+
+        .phone-response .compass-nudge {
+            color: var(--violet);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .phone-footer {
+            padding: 8px 16px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .phone-footer .phone-tag {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .phone.generalist .phone-tag {
+            color: var(--red-soft);
+        }
+
+        .phone.specialist .phone-tag {
+            color: var(--teal);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="deck">
+
+        <!-- ==========================================
+         SLIDE 1: TITLE
+         ========================================== -->
+        <div class="slide active" data-time="0:00">
+            <div class="tamil mb-24">
+                கற்க கசடறக் கற்பவை கற்றபின்<br>
+                நிற்க அதற்குத் தக
+            </div>
+            <div class="tamil-translation">"Learn well what should be learnt, then live accordingly."</div>
+            <div class="kural-ref">திருக்குறள் 391 · Thirukkural 391</div>
+
+            <div class="divider"></div>
+
+            <div class="slide-title">AI doesn't <span class="accent">know you</span>. Yet.</div>
+            <div class="slide-subtitle">Building a Personal AI That Grows With You</div>
+
+            <div class="presenter-tag">
+                <span class="name">Naveen Riaz</span> · The Architect
+            </div>
+
+            <div class="scroll-hint">
+                <span>Press ↓ to begin</span>
+                <div class="arrow">↓</div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 2: THE PROBLEM
+         ========================================== -->
+        <div class="slide" data-time="0:00">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:00 — 4 min</div>
+
+            <div class="slide-title">Last night, <span class="accent">10,000 students</span><br>asked the same question.
+            </div>
+
+            <div class="prompt-block">Explain polymorphism in Java with an example</div>
+
+            <div class="slide-subtitle mt-24">
+                They all got the <strong>exact same answer.</strong><br>
+                Including you.
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 3: THE QUESTION
+         ========================================== -->
+        <div class="slide" data-time="0:02">
+            <span class="mode-badge interact">🙋 Interactive</span>
+            <div class="timer">0:02</div>
+
+            <div class="big-quote">
+                How many of you open a <span class="accent">new chat</span><br>every single time?
+            </div>
+
+            <div class="slide-subtitle mt-24" style="color: var(--text-muted);">
+                🙋 Raise your hand.
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 4: THE PUNCHLINE
+         ========================================== -->
+        <div class="slide" data-time="0:03">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:03</div>
+
+            <div class="big-quote">
+                If AI doesn't know <span class="accent">who you are</span>,<br>
+                it treats you like <span style="color: var(--text-muted);">everyone else.</span>
+            </div>
+
+            <div class="slide-subtitle mt-24">And "everyone else" is replaceable.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 5: WHAT IS A PROFILE?
+         ========================================== -->
+        <div class="slide" data-time="0:04">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:04</div>
+
+            <div class="slide-title mb-24">What is a <span class="accent">profile</span>?</div>
+
+            <div class="compare" style="max-width: 700px;">
+                <div class="compare-panel" style="border-top: 3px solid var(--amber);">
+                    <div class="compare-label" style="color: var(--amber);">In real life</div>
+                    <div class="compare-text">
+                        Your WhatsApp bio.<br>
+                        Your Instagram aesthetic.<br>
+                        Your resume.<br>
+                        <strong style="color: var(--text-primary);">People build profiles of you from every
+                            interaction.</strong>
+                    </div>
+                </div>
+                <div class="compare-panel" style="border-top: 3px solid var(--text-muted);">
+                    <div class="compare-label" style="color: var(--text-muted);">In AI</div>
+                    <div class="compare-text">
+                        Nothing.<br>
+                        Every chat starts blank.<br>
+                        No memory. No context.<br>
+                        <strong style="color: var(--text-muted);">AI has zero profile of you.</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-subtitle mt-24" style="font-weight: 600;">Unless <span class="highlight-amber">you build
+                    one</span>.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 6: THREE FACES — INTRO
+         ========================================== -->
+        <div class="slide" data-time="0:05">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:05</div>
+
+            <div class="big-quote">
+                You don't show up the<br><span class="accent">same way</span> everywhere.
+            </div>
+
+            <div class="slide-subtitle mt-24" style="color: var(--text-muted);">
+                The way you study at 2am is different from how you act in a group project,<br>
+                which is different from how you present to a supervisor.
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="slide-subtitle" style="font-weight: 600;">
+                Three contexts. <span class="highlight-amber">Three profiles.</span>
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 7: PERSONAL PROFILE
+         ========================================== -->
+        <div class="slide" data-time="0:06">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:06</div>
+
+            <div style="font-size: 64px; margin-bottom: 16px;">🧠</div>
+
+            <div class="slide-title"><span class="accent">Personal</span></div>
+            <div class="slide-subtitle mb-24">The inner you. How you actually learn, think, and express — when nobody's
+                watching.</div>
+
+            <div class="pic-cards" style="gap: 16px;">
+                <div class="pic-card personal" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">Do you learn by</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">reading, watching, or
+                        doing?</div>
+                </div>
+                <div class="pic-card personal" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">Do you think in</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">big pictures or details?
+                    </div>
+                </div>
+                <div class="pic-card personal" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">Do you express via</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">bullet points or stories?
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-text mt-16">This is where your <strong style="color: var(--amber);">Study AI</strong>
+                lives.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 8: SOCIAL PROFILE
+         ========================================== -->
+        <div class="slide" data-time="0:07">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:07</div>
+
+            <div style="font-size: 64px; margin-bottom: 16px;">🤝</div>
+
+            <div class="slide-title"><span class="teal">Social</span></div>
+            <div class="slide-subtitle mb-24">The relational you. How you read people, navigate conflict, and
+                collaborate.</div>
+
+            <div class="pic-cards" style="gap: 16px;">
+                <div class="pic-card social" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">Are you</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">direct or diplomatic?
+                    </div>
+                </div>
+                <div class="pic-card social" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">Do you handle conflict</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">internally or out loud?
+                    </div>
+                </div>
+                <div class="pic-card social" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">Do you prefer</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">structured or free-flow?
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-text mt-16">This is where your <strong style="color: var(--teal);">Social AI</strong>
+                lives.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 9: PROFESSIONAL PROFILE
+         ========================================== -->
+        <div class="slide" data-time="0:08">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:08</div>
+
+            <div style="font-size: 64px; margin-bottom: 16px;">💼</div>
+
+            <div class="slide-title"><span class="violet">Professional</span></div>
+            <div class="slide-subtitle mb-24">The career you. How you absorb work, solve problems, and deliver results.
+            </div>
+
+            <div class="pic-cards" style="gap: 16px;">
+                <div class="pic-card professional" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">Do you plan first</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">or dive in and adjust?
+                    </div>
+                </div>
+                <div class="pic-card professional" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">Do you prefer</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">detailed briefs or
+                        high-level?</div>
+                </div>
+                <div class="pic-card professional" style="width: 180px; padding: 20px;">
+                    <div class="card-title" style="font-size: 14px;">How do you</div>
+                    <div class="card-sub" style="font-size: 15px; color: var(--text-primary);">present your work?</div>
+                </div>
+            </div>
+
+            <div class="small-text mt-16">This is where your <strong style="color: var(--violet);">Career AI</strong>
+                lives.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 10: INPUT → PROCESS → OUTPUT
+         ========================================== -->
+        <div class="slide" data-time="0:09">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:09</div>
+
+            <div class="slide-title mb-24">Every task has <span class="accent">three stages.</span></div>
+
+            <div class="flow" style="gap: 20px;">
+                <div class="flow-step" style="padding: 16px 28px; border-color: var(--border-amber);">
+                    <div style="font-size: 24px; margin-bottom: 4px;">📥</div>
+                    <strong style="color: var(--amber);">Input</strong>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">How you take in information
+                    </div>
+                </div>
+                <div class="flow-arrow" style="font-size: 24px;">→</div>
+                <div class="flow-step" style="padding: 16px 28px; border-color: rgba(20, 184, 166, 0.3);">
+                    <div style="font-size: 24px; margin-bottom: 4px;">⚙️</div>
+                    <strong style="color: var(--teal);">Process</strong>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">How you think it through
+                    </div>
+                </div>
+                <div class="flow-arrow" style="font-size: 24px;">→</div>
+                <div class="flow-step" style="padding: 16px 28px; border-color: rgba(139, 92, 246, 0.3);">
+                    <div style="font-size: 24px; margin-bottom: 4px;">📤</div>
+                    <strong style="color: var(--violet);">Output</strong>
+                    <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">How you express & deliver
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-subtitle mt-32">
+                Studying for an exam. Writing code. Giving a presentation.<br>
+                <strong>Every single thing follows this flow.</strong>
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 11: THE MATRIX REVEAL
+         ========================================== -->
+        <div class="slide" data-time="0:10">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:10</div>
+
+            <div class="slide-title mb-16">
+                <span class="accent">3 profiles</span> × <span class="teal">3 stages</span> = <span class="violet">your
+                    matrix</span>
+            </div>
+
+            <div class="slide-subtitle mb-24">9 cells. 9 dimensions of you. AI knows <strong>none</strong> of them.
+            </div>
+
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>📥 Input</th>
+                        <th>⚙️ Process</th>
+                        <th>📤 Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="matrix-row-personal">
+                        <td>🧠 Personal</td>
+                        <td>How you learn</td>
+                        <td>How you think</td>
+                        <td>How you express</td>
+                    </tr>
+                    <tr class="matrix-row-social">
+                        <td>🤝 Social</td>
+                        <td>How you read people</td>
+                        <td>How you navigate</td>
+                        <td>How you communicate</td>
+                    </tr>
+                    <tr class="matrix-row-professional">
+                        <td>💼 Professional</td>
+                        <td>How you absorb work</td>
+                        <td>How you solve problems</td>
+                        <td>How you deliver</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="small-text mt-16">This is <span class="highlight-amber">your</span> matrix. Let's fill it in.
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 6: POLL QUESTIONS (Progressive)
+         ========================================== -->
+        <div class="slide" data-time="0:05">
+            <span class="mode-badge interact">🙋 Interactive</span>
+            <div class="timer">0:05 — 2 min</div>
+
+            <div class="slide-title mb-24">Let's find <span class="accent">3 cells.</span></div>
+
+            <div class="slide-subtitle mb-24" style="font-weight: 600; color: var(--amber);">
+                ① When you study for an exam — do you prefer reading notes or watching YouTube?
+            </div>
+
+            <div class="slide-subtitle mb-24" style="font-weight: 600; color: var(--teal);">
+                ② When you're stuck on a bug — do you debug step-by-step or rewrite from scratch?
+            </div>
+
+            <div class="slide-subtitle mb-24" style="font-weight: 600; color: var(--violet);">
+                ③ When you explain something to a friend — do you draw a diagram or just talk?
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="slide-subtitle" style="font-weight: 700; color: var(--text-primary);">
+                You just mapped your <span class="highlight-amber">Input</span>, <span
+                    class="highlight-teal">Process</span>, and <span class="highlight-violet">Output</span>.
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 7: DEMO INTRO
+         ========================================== -->
+        <div class="slide" data-time="0:07">
+            <span class="mode-badge demo">💻 Demo</span>
+            <div class="timer">0:07 — 10 min</div>
+
+            <div class="slide-title">Same question.<br>Two phones. <span class="accent">Two AIs.</span></div>
+
+            <div class="phones mt-24">
+                <div class="phone generalist">
+                    <div class="phone-header">
+                        <span class="phone-os">⊘ Generalist</span>
+                        <span class="phone-label">No Profile</span>
+                    </div>
+                    <div class="phone-response"
+                        style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
+                        <p style="color: var(--text-muted); font-style: italic; text-align: center;">Generic
+                            ChatGPT<br>The stranger.</p>
+                    </div>
+                    <div class="phone-footer">
+                        <span class="phone-tag">⊘ No Context</span>
+                    </div>
+                </div>
+                <div class="phone specialist">
+                    <div class="phone-header">
+                        <span class="phone-os">✦ Specialist</span>
+                        <span class="phone-label">PIC Loaded</span>
+                    </div>
+                    <div class="phone-response"
+                        style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
+                        <p style="color: var(--teal); font-style: italic; text-align: center;">Profiled ChatGPT<br>The
+                            partner.</p>
+                    </div>
+                    <div class="phone-footer">
+                        <span class="phone-tag">✦ Profile Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-text mt-16">Same AI. Same brain. The ONLY difference is <strong
+                    style="color: var(--amber)">context</strong>.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 8: DEMO 1 — THE META QUESTION
+         ========================================== -->
+        <div class="slide" data-time="0:08">
+            <span class="mode-badge demo">💻 Demo 1 — The Meta Question</span>
+            <div class="timer">0:08</div>
+
+            <div class="prompt-block" style="margin-bottom: 20px; max-width: 500px;">Why do we need to build an AI
+                Profile?</div>
+
+            <div class="phones">
+                <div class="phone generalist">
+                    <div class="phone-header">
+                        <span class="phone-os">⊘ Generalist</span>
+                        <span class="phone-label">No Profile</span>
+                    </div>
+                    <div class="phone-prompt">
+                        <div class="phone-prompt-text">Why do we need to build an AI Profile?</div>
+                    </div>
+                    <div class="phone-response">
+                        <p><span class="highlight">An AI profile helps personalise your interactions.</span> It allows
+                            the model to understand your preferences, learning style, and goals, resulting in more
+                            relevant and efficient responses...</p>
+                        <p style="color: var(--text-muted); font-size: 11px;">Generic. Could be from any website.</p>
+                    </div>
+                    <div class="phone-footer">
+                        <span class="phone-tag">⊘ Same answer for everyone</span>
+                    </div>
+                </div>
+                <div class="phone specialist">
+                    <div class="phone-header">
+                        <span class="phone-os">✦ Specialist</span>
+                        <span class="phone-label">Your Profile</span>
+                    </div>
+                    <div class="phone-prompt">
+                        <div class="phone-prompt-text">Why do we need to build an AI Profile?</div>
+                    </div>
+                    <div class="phone-response">
+                        <p><span class="highlight">Great question. Let me show you rather than tell you.</span></p>
+                        <p>You told me you learn best through <span class="highlight">visual analogies</span> and prefer
+                            big-picture first. Without your profile, I'd have just given you a wall of text — like the
+                            answer on the other phone.</p>
+                        <p><span class="compass-nudge">That's why. The profile IS the difference you're looking at right
+                                now.</span></p>
+                    </div>
+                    <div class="phone-footer">
+                        <span class="phone-tag">✦ Proves its own point</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="small-text mt-16">The profiled AI doesn't just explain — it <strong
+                    style="color: var(--teal)">demonstrates</strong>.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 9: DEMO 2 — SEMINAR PREP
+         ========================================== -->
+        <div class="slide" data-time="0:11">
+            <span class="mode-badge demo">💻 Demo 2 — Problem Solving</span>
+            <div class="timer">0:11</div>
+
+            <div class="prompt-block" style="margin-bottom: 20px; max-width: 560px;">I have a seminar presentation
+                tomorrow and I don't know how to start</div>
+
+            <div class="phones">
+                <div class="phone generalist">
+                    <div class="phone-header">
+                        <span class="phone-os">⊘ Generalist</span>
+                        <span class="phone-label">No Profile</span>
+                    </div>
+                    <div class="phone-prompt">
+                        <div class="phone-prompt-text">I have a seminar tomorrow, don't know how to start</div>
+                    </div>
+                    <div class="phone-response">
+                        <p><span class="highlight">Here's a step-by-step approach:</span></p>
+                        <p>1. Choose your topic<br>2. Create an outline: Introduction, Body, Conclusion<br>3. Add key
+                            points to each section<br>4. Prepare visual aids...</p>
+                        <p style="color: var(--text-muted); font-size: 11px;">Template. Same for everyone.</p>
+                    </div>
+                    <div class="phone-footer">
+                        <span class="phone-tag">⊘ Generic template</span>
+                    </div>
+                </div>
+                <div class="phone specialist">
+                    <div class="phone-header">
+                        <span class="phone-os">✦ Specialist</span>
+                        <span class="phone-label">Your Profile</span>
+                    </div>
+                    <div class="phone-prompt">
+                        <div class="phone-prompt-text">I have a seminar tomorrow, don't know how to start</div>
+                    </div>
+                    <div class="phone-response">
+                        <p><span class="highlight">You think better when brainstorming out loud.</span> So let's not
+                            start with an outline — let's start with a question:</p>
+                        <p>What's the ONE thing you want the audience to walk away knowing?</p>
+                        <p style="color: var(--teal); font-size: 12px;">Guides instead of dictates. Matches YOUR
+                            process.</p>
+                    </div>
+                    <div class="phone-footer">
+                        <span class="phone-tag">✦ Knows how you think</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 10: DEMO 3 — VIVA (COMPASS)
+         ========================================== -->
+        <div class="slide" data-time="0:14">
+            <span class="mode-badge demo">💻 Demo 3 — The Compass</span>
+            <div class="timer">0:14</div>
+
+            <div class="prompt-block" style="margin-bottom: 20px; max-width: 500px;">Help me prepare for my viva voce
+            </div>
+
+            <div class="phones">
+                <div class="phone generalist">
+                    <div class="phone-header">
+                        <span class="phone-os">⊘ Generalist</span>
+                        <span class="phone-label">No Profile</span>
+                    </div>
+                    <div class="phone-prompt">
+                        <div class="phone-prompt-text">Help me prepare for my viva voce</div>
+                    </div>
+                    <div class="phone-response">
+                        <p><span class="highlight">Common viva questions:</span></p>
+                        <p>• What is your project about?<br>• What methodology did you use?<br>• What were your key
+                            findings?<br>• What are the limitations?</p>
+                        <p style="color: var(--text-muted); font-size: 11px;">Standard. Flat. No personality.</p>
+                    </div>
+                    <div class="phone-footer">
+                        <span class="phone-tag">⊘ Generic Q&A list</span>
+                    </div>
+                </div>
+                <div class="phone specialist">
+                    <div class="phone-header">
+                        <span class="phone-os">✦ Specialist</span>
+                        <span class="phone-label">Your Profile</span>
+                    </div>
+                    <div class="phone-prompt">
+                        <div class="phone-prompt-text">Help me prepare for my viva voce</div>
+                    </div>
+                    <div class="phone-response">
+                        <p><span class="highlight">I'll prep you in your style.</span> But first — a nudge:</p>
+                        <p><span class="compass-nudge">"I noticed you tend to give short answers under pressure. Let's
+                                practise expanding your responses with confidence. Here's a 3-round drill."</span></p>
+                        <p style="color: var(--teal); font-size: 12px;">Serves AND stretches you.</p>
+                    </div>
+                    <div class="phone-footer">
+                        <span class="phone-tag">✦ The Compass in action</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-24">
+                <div class="slide-subtitle" style="font-weight: 700;">That's the <span
+                        class="highlight-violet">Compass</span>. AI that doesn't just serve — it <span
+                        class="highlight-violet">grows</span> you.</div>
+                <div class="seventy-thirty mt-16">
+                    <div class="serve">70% Serve</div>
+                    <div class="stretch">30% Stretch</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 11: PIC EXPLAINED
+         ========================================== -->
+        <div class="slide" data-time="0:17">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:17 — 3 min</div>
+
+            <div class="slide-title mb-24">
+                <span class="accent">P</span>ersona · <span class="teal">I</span>nterface · <span
+                    class="violet">C</span>ompass
+            </div>
+
+            <div class="pic-cards">
+                <div class="pic-card personal">
+                    <span class="emoji">🎭</span>
+                    <div class="card-title highlight-amber">Persona</div>
+                    <div class="card-sub">Who you are in this context. Your patterns, preferences, personality.</div>
+                </div>
+                <div class="pic-card social">
+                    <span class="emoji">🔌</span>
+                    <div class="card-title highlight-teal">Interface</div>
+                    <div class="card-sub">How AI should talk to you. Your format, tone, depth, style.</div>
+                </div>
+                <div class="pic-card professional">
+                    <span class="emoji">🧭</span>
+                    <div class="card-title highlight-violet">Compass</div>
+                    <div class="card-sub">Where you want to grow. The 30% stretch. Your chosen edge.</div>
+                </div>
+            </div>
+
+            <div class="small-text mt-16">Three layers. One instruction set. Paste it into a ChatGPT Project.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 12: THE FLOW
+         ========================================== -->
+        <div class="slide" data-time="0:18">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:18</div>
+
+            <div class="slide-title mb-24">How it works</div>
+
+            <div class="flow">
+                <div class="flow-step">You</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step" style="border-color: var(--border-amber);">Profile GPT</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step" style="color: var(--amber);">15 min chat</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step" style="border-color: var(--border-amber);">Your PIC</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step" style="color: var(--teal);">ChatGPT Project</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step" style="color: var(--violet);">AI that knows you</div>
+            </div>
+
+            <div class="slide-subtitle mt-32">
+                The GPT asks you questions about how you learn, think, and express.<br>
+                At the end, it writes your PIC — your instruction set for AI.
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 13: HANDS-ON
+         ========================================== -->
+        <div class="slide" data-time="0:20">
+            <span class="mode-badge build">🛠️ Build</span>
+            <div class="timer">0:20 — 20 min</div>
+
+            <div class="slide-title">Build your <span class="accent">Personal PIC</span>. Now.</div>
+
+            <div class="slide-subtitle mt-16">Open the GPT. Answer honestly. There are no wrong answers.</div>
+
+            <div class="qr-placeholder mt-24">
+                <div class="qr-icon">📱</div>
+                QR Code
+            </div>
+
+            <div class="small-text mt-16">~15 minutes · Just talk to the GPT like you'd talk to a friend</div>
+
+            <div class="slide-subtitle mt-32" style="font-weight: 600; color: var(--amber); font-size: 16px;">
+                ⏱ When you're done: read your PIC. Does anything surprise you?
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 14: THE REVEAL
+         ========================================== -->
+        <div class="slide" data-time="0:40">
+            <span class="mode-badge demo">💻 Reveal</span>
+            <div class="timer">0:40 — 12 min</div>
+
+            <div class="slide-title">Paste it. <span class="accent">Test it.</span> See the difference.</div>
+
+            <div class="slide-body mt-24" style="text-align: left; max-width: 600px;">
+                <strong>Step 1:</strong> Create a new ChatGPT Project → name it <span class="highlight-amber">"My Study
+                    Partner"</span><br><br>
+                <strong>Step 2:</strong> Paste your PIC into <span class="highlight-teal">Project
+                    Instructions</span><br><br>
+                <strong>Step 3:</strong> Ask it something from <span class="highlight-violet">your course</span>. See
+                what happens.
+            </div>
+
+            <div class="slide-subtitle mt-32" style="color: var(--text-muted); font-size: 16px;">
+                That's Day 1. Memory hasn't kicked in yet.<br>
+                Day 30 is when it gets <strong style="color: var(--text-primary);">really</strong> good.
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 15: THREE PICs
+         ========================================== -->
+        <div class="slide" data-time="0:52">
+            <span class="mode-badge talk">🎤 Talk</span>
+            <div class="timer">0:52 — 8 min</div>
+
+            <div class="slide-title mb-16">Three PICs. Three Projects.<br><span class="accent">Three AI Partners.</span>
+            </div>
+
+            <div class="slide-subtitle mb-24">You just built one face. You have two more.</div>
+
+            <div class="pic-cards">
+                <div class="pic-card personal">
+                    <span class="emoji">🧠</span>
+                    <div class="card-title">Personal PIC</div>
+                    <div class="card-sub">How you learn, think, express</div>
+                    <div class="card-ai">→ Study AI</div>
+                </div>
+                <div class="pic-card social">
+                    <span class="emoji">🤝</span>
+                    <div class="card-title">Social PIC</div>
+                    <div class="card-sub">How you connect, collaborate, communicate</div>
+                    <div class="card-ai">→ Social AI</div>
+                </div>
+                <div class="pic-card professional">
+                    <span class="emoji">💼</span>
+                    <div class="card-title">Professional PIC</div>
+                    <div class="card-sub">How you work, solve, deliver</div>
+                    <div class="card-ai">→ Career AI</div>
+                </div>
+            </div>
+
+            <div class="small-text mt-16">The way you study isn't the way you socialise, which isn't the way you
+                work.<br>Keep them separate. The clarity matters.</div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 16: CLOSE
+         ========================================== -->
+        <div class="slide" data-time="0:57">
+            <span class="mode-badge talk">🎤 Close</span>
+            <div class="timer">0:57</div>
+
+            <div class="big-quote" style="margin-bottom: 32px;">
+                Every student needs<br>a <span class="accent">Profile PIC</span>.
+            </div>
+
+            <div class="slide-subtitle">You just built your first one.</div>
+
+            <div class="divider"></div>
+
+            <div class="qr-placeholder">
+                <div class="qr-icon">📱</div>
+                All 3 GPTs
+            </div>
+
+            <div class="small-text mt-16">Open source. Free forever. Built for students.</div>
+
+            <div class="presenter-tag mt-32">
+                <span class="name">Naveen Riaz</span> · The Architect
+            </div>
+        </div>
+
+        <!-- ==========================================
+         SLIDE 17: Q&A
+         ========================================== -->
+        <div class="slide" data-time="1:00">
+            <div class="timer">1:00 — 30 min</div>
+
+            <div class="big-number mb-16">Q&A</div>
+
+            <div class="slide-subtitle">Ask me anything.</div>
+
+            <div class="divider"></div>
+
+            <div class="slide-body" style="font-size: 16px; color: var(--text-muted); max-width: 500px;">
+                About the profiles. About AI. About how this works under the hood.<br><br>
+                The GPT links stay live. Build your other PICs when you're ready. Share this with a friend.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- SLIDE NUMBER -->
+    <div class="slide-number" id="slideNumber"></div>
+
+    <script>
+        // =============================================
+        // SLIDE NAVIGATION ENGINE
+        // =============================================
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progressBar');
+        const slideNumber = document.getElementById('slideNumber');
+        let currentSlide = 0;
+
+        function updateSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            updateProgress();
+        }
+
+        function nextSlide() {
+            updateSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            updateSlide(currentSlide - 1);
+        }
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            progressBar.style.width = progress + '%';
+            slideNumber.textContent = (currentSlide + 1) + ' / ' + slides.length;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case 'ArrowDown':
+                case 'ArrowRight':
+                case 'PageDown':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowUp':
+                case 'ArrowLeft':
+                case 'PageUp':
+                    e.preventDefault();
+                    prevSlide();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    updateSlide(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    updateSlide(slides.length - 1);
+                    break;
+            }
+        });
+
+        // Touch support for mobile preview
+        let touchStartY = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        });
+        document.addEventListener('touchend', (e) => {
+            const touchEndY = e.changedTouches[0].clientY;
+            const diff = touchStartY - touchEndY;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextSlide();
+                else prevSlide();
+            }
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+
+</body>
+
+</html>
