@@ -1,12 +1,12 @@
 # Philosophy: KIT = Knowledge · Intuition · Tooling
 
-> *"கற்க கசடறக் கற்பவை கற்றபின் 
-> நிற்க அதற்குத் தக"*
+> கற்க கசடறக் கற்பவை கற்றபின் 
+> நிற்க அதற்குத் தக
 
-> *"Learn well what should be learnt, 
-then live accordingly."*
+> Learn well what should be learnt, 
+> then live accordingly.
 
-> - Thirukkural 391
+> Thirukkural 391
 
 ---
 
@@ -32,7 +32,15 @@ Not just what you ask - but how you process information, how you like to communi
 
 **The difference isn't the AI. The difference is context.** A tutor who's worked with you for a year is better than a genius who just met you. Same idea. Your profile is the context. It turns a generic tool into something that actually gets you.
 
-That's what Student Kit does. It helps you build a **Profile PIC** - your **Persona** (who you are), your **Interface** (how AI should talk to you), and your **Compass** (where you're heading). Three layers. Nine dimensions. One profile that changes everything.
+That's what Student Kit does. It helps you build **three Profile PICs**  -  one for each side of who you are:
+
+- 🧠 **Personal PIC**  -  how you learn, think, and express ideas
+- 🤝 **Social PIC**  -  how you read people, navigate relationships, and communicate
+- 💼 **Professional PIC**  -  how you absorb work knowledge, solve problems, and deliver results
+
+Each PIC has three layers: your **Persona** (who you are in that context), your **Interface** (how AI should talk to you there), and your **Compass** (where you're heading in that area).
+
+Why three separate PICs and not one combined profile? Because **you show up differently in each domain.** The way you study alone at 2am is not how you work in a group project, which is not how you present in a job interview. Mixing them blurs the signal. Keeping them separate means AI knows exactly which version of you it's talking to.
 
 ---
 
@@ -61,8 +69,8 @@ A good coach doesn't push you all the time. They build your confidence 70% of th
 
 ## Start Here
 
-**Profile Kit** takes about 20 minutes. Three short conversations with a GPT - personal, social, professional. After that, every AI interaction you have will be different.
+**Profile Kit** takes about 20 minutes per profile. Three GPT conversations  -  personal, social, professional  -  each producing its own PIC. Paste each PIC into its own ChatGPT Project, and you'll have three AI partners, each tuned to a different side of your life.
 
-> **Every student needs a Profile PIC.**
+> **Every student needs a Profile PIC.** You need three.
 
 This is open source. Free forever. Built for students, by people who actually care.

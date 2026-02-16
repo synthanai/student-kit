@@ -17,7 +17,7 @@
 
 Student Kit is a collection of **open-source AI tools** designed specifically for students. Each tool (called a **kit**) is standalone, free to use, and built to solve a real student problem.
 
-The first kit  -  **Profile Kit**  -  helps you build a personalised AI that actually understands how you learn, think, and work. Instead of using generic ChatGPT, you create an AI tuned to YOUR brain.
+The first kit  -  **Profile Kit**  -  helps you build three personalised AIs that actually understand how you learn, think, and work. Each profile produces its own PIC that goes into its own ChatGPT Project.
 
 > **KIT** = **K**nowledge · **I**ntuition · **T**ooling
 >
@@ -42,7 +42,9 @@ The first kit  -  **Profile Kit**  -  helps you build a personalised AI that act
 It takes 15-20 minutes per profile. You'll get a personalised AI instruction set to paste into a ChatGPT Project. Here's what happens:
 
 ```
-You → Profile GPT (15 min chat) → PIC instruction set → paste into ChatGPT Project → personalised AI
+You → Personal GPT (15 min) → Personal PIC → paste into ChatGPT Project → your Study AI
+You → Social GPT (15 min)   → Social PIC   → paste into ChatGPT Project → your Social AI
+You → Professional GPT (15 min) → Professional PIC → paste into ChatGPT Project → your Career AI
 ```
 
 Your AI will:
@@ -65,19 +67,17 @@ Workshops include facilitator guides, timed outlines, and all materials needed t
 
 You use AI every day. But AI treats you the same as every other student on the planet. That's the problem. Your profile is the fix. It turns a generic tool into a partner that actually gets you.
 
-> **Every student needs a Profile PIC**  -  your **P**ersona, **I**nterface, and **C**ompass for AI.
+> **Every student needs a Profile PIC**  -  your **P**ersona, **I**nterface, and **C**ompass. You need one for each context.
 
-### Three Profiles. Three Conversations. One Complete You.
+### Three PICs. Three Projects. Three AI Partners.
 
-Profile Kit builds your PIC through **3 separate conversations**, each uncovering a different side of who you are:
-
-| Profile | What It Reveals | Why It Matters |
+| Profile | What It Reveals | Your AI Partner |
 |---------|----------------|----------------|
-| 🧠 **Personal** | How you learn, think, and express ideas | So AI matches your brain, not a generic template |
-| 🤝 **Social** | How you read people, navigate relationships, and communicate | So AI adapts to your social style, not a one-size script |
-| 💼 **Professional** | How you absorb work knowledge, solve problems, and deliver results | So AI supports your career growth, not just homework |
+| 🧠 **Personal PIC** | How you learn, think, and express ideas | Your **Study AI**  -  matches your brain |
+| 🤝 **Social PIC** | How you read people, navigate relationships, and communicate | Your **Social AI**  -  adapts to your style |
+| 💼 **Professional PIC** | How you absorb work knowledge, solve problems, and deliver results | Your **Career AI**  -  supports your growth |
 
-Each profile is a separate chat because **you show up differently in each domain**  -  the way you learn isn't the way you lead, and the way you lead isn't the way you collaborate. AI needs to understand all three.
+Each PIC is a separate conversation and a separate ChatGPT Project because **you show up differently in each domain**  -  the way you study isn't the way you socialise, and the way you socialise isn't the way you work. Keep them separate. The clarity matters.
 
 Read the full story: [Philosophy](docs/philosophy.md) · [The 3×3 Matrix](docs/3x3-matrix.md)
 
@@ -91,7 +91,7 @@ Every student operates across 3 domains, each with 3 capabilities:
 | 🤝 **Social** | How you read people | How you navigate relationships | How you communicate |
 | 💼 **Professional** | How you absorb work knowledge | How you solve work problems | How you deliver results |
 
-Profile Kit maps all 9 cells. The result: an AI that knows your complete operating system.
+Profile Kit maps all 9 cells  -  3 per profile. Each profile produces its own PIC. Three PICs, three AI partners, one complete you.
 
 ## Contributing
 
