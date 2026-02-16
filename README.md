@@ -1,6 +1,7 @@
 <p align="center">
   <h1 align="center">🎓 Student Kit</h1>
-  <p align="center"><strong>Open-source AI toolkit for students  -  build your profile, sharpen your skills, navigate your career.</strong></p>
+  <p align="center"><strong>AI doesn't know you. Yet.</strong></p>
+  <p align="center">Open-source toolkit that helps students build a Profile PIC  -  so AI actually gets how you think, learn, and work.</p>
   <p align="center">
     <a href="#available-kits">Kits</a> •
     <a href="#quick-start">Quick Start</a> •
@@ -60,16 +61,25 @@ Workshops include facilitator guides, timed outlines, and all materials needed t
 
 ## Philosophy
 
-**In the AI era, the students who win aren't the ones who use AI the most  -  they're the ones AI understands the best.**
+**Recognition** → **Revelation** → **Revolution**
 
-Most students use ChatGPT the same way: open a new chat, ask a question, get a generic answer. Student Kit changes that. By profiling how you learn, think, communicate, and work, you give AI the context it needs to serve you personally.
+You use AI every day. But AI treats you the same as every other student on the planet. That's the problem. Your profile is the fix. It turns a generic tool into a partner that actually gets you.
 
-Your profile has a PIC strategy:
-- **Layer 1: Persona**  -  who you are (your patterns)
-- **Layer 2: Interface**  -  how AI should serve you (your preferences)
-- **Layer 3: Compass**  -  how AI should grow you (your development areas)
+> **Every student needs a Profile PIC**  -  your **P**ersona, **I**nterface, and **C**ompass for AI.
 
-Read more: [Philosophy](docs/philosophy.md) · [The 3×3 Matrix](docs/3x3-matrix.md)
+### Three Profiles. Three Conversations. One Complete You.
+
+Profile Kit builds your PIC through **3 separate conversations**, each uncovering a different side of who you are:
+
+| Profile | What It Reveals | Why It Matters |
+|---------|----------------|----------------|
+| 🧠 **Personal** | How you learn, think, and express ideas | So AI matches your brain, not a generic template |
+| 🤝 **Social** | How you read people, navigate relationships, and communicate | So AI adapts to your social style, not a one-size script |
+| 💼 **Professional** | How you absorb work knowledge, solve problems, and deliver results | So AI supports your career growth, not just homework |
+
+Each profile is a separate chat because **you show up differently in each domain**  -  the way you learn isn't the way you lead, and the way you lead isn't the way you collaborate. AI needs to understand all three.
+
+Read the full story: [Philosophy](docs/philosophy.md) · [The 3×3 Matrix](docs/3x3-matrix.md)
 
 ## The 3×3 Matrix
 
