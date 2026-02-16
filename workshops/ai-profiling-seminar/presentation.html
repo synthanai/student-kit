@@ -1745,44 +1745,75 @@
                 Human + AI
             </div>
 
-            <!-- SVG Triangle-Circle -->
-            <svg viewBox="0 0 440 400" width="440" height="400" style="margin: 0 auto; display: block;">
-                <!-- Encompassing circle (dashed, subtle glow) -->
-                <circle cx="220" cy="195" r="175" fill="none" stroke="rgba(45, 212, 191, 0.25)" stroke-width="1.5"
-                    stroke-dasharray="8 4" />
-                <circle cx="220" cy="195" r="175" fill="none" stroke="rgba(45, 212, 191, 0.08)" stroke-width="6" />
+            <!-- Two-column layout: SVG left, matrix right -->
+            <div style="display: flex; align-items: center; gap: 32px; width: 100%; max-width: 900px; margin: 0 auto;">
 
-                <!-- Triangle (inscribed — vertices touch circle) -->
-                <polygon points="220,20 69,283 371,283" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"
-                    stroke-linejoin="round" />
+                <!-- LEFT: Clean SVG (no text labels — just geometry) -->
+                <div style="flex: 0 0 280px;">
+                    <svg viewBox="0 0 300 300" width="280" height="280">
+                        <!-- Circle -->
+                        <circle cx="150" cy="155" r="120" fill="none" stroke="rgba(45, 212, 191, 0.25)"
+                            stroke-width="1.5" stroke-dasharray="8 4" />
+                        <circle cx="150" cy="155" r="120" fill="none" stroke="rgba(45, 212, 191, 0.08)"
+                            stroke-width="6" />
+                        <!-- Triangle (inscribed) -->
+                        <polygon points="150,35 46,227 254,227" fill="none" stroke="rgba(255,255,255,0.2)"
+                            stroke-width="1.5" stroke-linejoin="round" />
+                        <!-- Vertex dots -->
+                        <circle cx="150" cy="35" r="6" fill="#d4a853" />
+                        <circle cx="46" cy="227" r="6" fill="#2dd4bf" />
+                        <circle cx="254" cy="227" r="6" fill="#a78bfa" />
+                        <!-- Centre dot -->
+                        <circle cx="150" cy="155" r="4" fill="rgba(45, 212, 191, 0.4)" />
+                    </svg>
+                </div>
 
-                <!-- Centre: COMPLETE -->
-                <text x="220" y="180" text-anchor="middle" fill="#2dd4bf" font-size="15" font-weight="700"
-                    font-family="'Inter', sans-serif" letter-spacing="3">◯ COMPLETE</text>
-                <text x="220" y="200" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="11"
-                    font-family="'Inter', sans-serif">Traceable · Reversible · Governed</text>
-
-                <!-- Vertex: Faster (top — label inside) -->
-                <circle cx="220" cy="20" r="6" fill="#d4a853" />
-                <text x="220" y="50" text-anchor="middle" fill="#d4a853" font-size="14" font-weight="700"
-                    font-family="'Inter', sans-serif">⚡ FASTER</text>
-                <text x="220" y="66" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11"
-                    font-family="'Inter', sans-serif">Focus · Clarity · Action</text>
-
-                <!-- Vertex: Smarter (bottom-left — label inside) -->
-                <circle cx="69" cy="283" r="6" fill="#2dd4bf" />
-                <text x="105" y="265" text-anchor="middle" fill="#2dd4bf" font-size="14" font-weight="700"
-                    font-family="'Inter', sans-serif">🧠 SMARTER</text>
-                <text x="105" y="250" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11"
-                    font-family="'Inter', sans-serif">Context · Patterns · Synthesis</text>
-
-                <!-- Vertex: Safer (bottom-right — label inside) -->
-                <circle cx="371" cy="283" r="6" fill="#a78bfa" />
-                <text x="335" y="265" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="700"
-                    font-family="'Inter', sans-serif">🛡️ SAFER</text>
-                <text x="335" y="250" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11"
-                    font-family="'Inter', sans-serif">Judgement · Integrity · Compliance</text>
-            </svg>
+                <!-- RIGHT: Matrix table -->
+                <div style="flex: 1; min-width: 0;">
+                    <table style="width: 100%; border-collapse: separate; border-spacing: 0 8px;">
+                        <tr>
+                            <td
+                                style="padding: 12px 16px; background: rgba(212, 168, 83, 0.08); border-radius: 8px; border-left: 3px solid #d4a853;">
+                                <div
+                                    style="font-size: 22px; font-weight: 700; color: #d4a853; font-family: 'Inter', sans-serif; letter-spacing: 1px;">
+                                    ⚡ FASTER</div>
+                                <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">Focus · Clarity
+                                    · Action</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                style="padding: 12px 16px; background: rgba(45, 212, 191, 0.06); border-radius: 8px; border-left: 3px solid #2dd4bf;">
+                                <div
+                                    style="font-size: 22px; font-weight: 700; color: #2dd4bf; font-family: 'Inter', sans-serif; letter-spacing: 1px;">
+                                    🧠 SMARTER</div>
+                                <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">Context ·
+                                    Patterns · Synthesis</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                style="padding: 12px 16px; background: rgba(167, 139, 250, 0.06); border-radius: 8px; border-left: 3px solid #a78bfa;">
+                                <div
+                                    style="font-size: 22px; font-weight: 700; color: #a78bfa; font-family: 'Inter', sans-serif; letter-spacing: 1px;">
+                                    🛡️ SAFER</div>
+                                <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">Judgement ·
+                                    Integrity · Compliance</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td
+                                style="padding: 14px 16px; background: rgba(45, 212, 191, 0.03); border-radius: 8px; border: 1px dashed rgba(45, 212, 191, 0.25);">
+                                <div
+                                    style="font-size: 22px; font-weight: 700; color: #2dd4bf; font-family: 'Inter', sans-serif; letter-spacing: 2px;">
+                                    ◯ COMPLETE</div>
+                                <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">Traceable ·
+                                    Reversible · Governed</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
             <div class="speaker-notes">
                 <div class="notes-label">🎤 Speak</div>
