@@ -82,16 +82,21 @@
             padding: 60px 80px;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0.4s;
             pointer-events: none;
             background: var(--bg-base);
             overflow: hidden;
+            z-index: 1;
+            visibility: hidden;
         }
 
         .slide.active {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
+            z-index: 2;
+            visibility: visible;
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0s;
         }
 
         /* =============================================
@@ -1633,7 +1638,7 @@
 
         function updateSlide(index) {
             if (index < 0 || index >= slides.length) return;
-            slides[currentSlide].classList.remove('active');
+            slides.forEach(s => s.classList.remove('active'));
             currentSlide = index;
             slides[currentSlide].classList.add('active');
             updateProgress();
