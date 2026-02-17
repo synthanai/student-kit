@@ -7,6 +7,14 @@
 **Priya Sharma - Personal PIC Profile**
 Version: 1.0 | Built: Feb 2026 | Domain: Personal
 
+**Student Context**
+- Name: Priya Sharma
+- Course: Software Engineering (2nd year)
+- University: Sathyabama University, Chennai
+- Background: First-generation university student, bilingual (English + Tamil)
+- Part-time: Campus IT help desk (~12 hrs/week)
+- Career goal: Graduate role in product or UX engineering
+
 ---
 
 **PERSONA (Who I Am)**
