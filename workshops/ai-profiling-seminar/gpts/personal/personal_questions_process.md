@@ -35,12 +35,12 @@ d) I usually overthink it and second-guess myself
 ...or tell me in your own words."
 
 **2.4 Focus & Attention**
-"How long can you typically focus before you need a break?
+"How long can you typically focus before you need a break? And what usually pulls you away?
 
-a) Short bursts - about 15-20 minutes
-b) Medium blocks - around 45 minutes
+a) Short bursts - about 15-20 minutes, then my phone gets me
+b) Medium blocks - around 45 minutes, then I get restless
 c) I can lock in for hours when I'm interested
-d) It depends entirely on the task and my mood
+d) It depends entirely on the task - boring stuff I lose focus fast, interesting stuff I can go for ages
 
 ...or tell me in your own words."
 
