@@ -1,0 +1,15 @@
+{
+    "name": "arivar-student-kit",
+    "version": "1.0.0",
+    "private": true,
+    "description": "ARIVAR PWA – Know Yourself. Cognitive identity profiling for students.",
+    "scripts": {
+        "dev": "vite app --open",
+        "build": "vite build app",
+        "preview": "vite preview app",
+        "serve": "npx serve app -l 8765"
+    },
+    "devDependencies": {
+        "vite": "^6.0.0"
+    }
+}

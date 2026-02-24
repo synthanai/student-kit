@@ -7,8 +7,12 @@
     <meta name="description"
         content="Discover your CORE identity with ARIVAR. No signup. No data collection. Your profile stays on your device.">
     <meta name="theme-color" content="#c28840">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ARIVAR">
     <title>ARIVAR – Know Yourself</title>
     <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -134,12 +138,35 @@
                 <!-- Card rendered here by card-renderer.js -->
             </div>
 
+            <!-- Tier Info -->
+            <div class="tier-info" id="tier-info" style="display:none;">
+                <div class="tier-badge" id="tier-badge"></div>
+                <div class="tier-score" id="tier-score"></div>
+                <div class="tier-breakdown" id="tier-breakdown"></div>
+            </div>
+
             <div class="card-actions">
                 <button class="btn-secondary" id="btn-download-card">📥 Save Image</button>
                 <button class="btn-secondary" id="btn-view-passport">🛂 AI Passport</button>
+                <button class="btn-secondary" id="btn-view-stories">📱 Story Slides</button>
                 <button class="btn-primary" id="btn-upgrade-profile" style="display:none;">
                     Unlock Next Level →
                 </button>
+            </div>
+
+            <!-- Story Slides Carousel -->
+            <div class="story-slides-section" id="story-slides-section" style="display:none;">
+                <div class="slide-tabs" id="slide-tabs">
+                    <!-- Tabs populated by JS -->
+                </div>
+                <div class="slide-preview" id="slide-preview">
+                    <!-- Current slide SVG -->
+                </div>
+                <div class="slide-actions">
+                    <button class="btn-secondary" id="btn-slide-download">📥 Save Slide</button>
+                    <button class="btn-primary" id="btn-slide-share" style="width:auto;margin:0;padding:12px 24px;">📤
+                        Share to Stories</button>
+                </div>
             </div>
         </section>
 
@@ -238,12 +265,14 @@
     </div>
 
     <script src="js/profile-store.js"></script>
+    <script src="js/rarity-engine.js"></script>
     <script src="js/kolam-hash.js"></script>
     <script src="js/direction-detector.js"></script>
     <script src="js/llm-client.js"></script>
     <script src="js/card-renderer.js"></script>
     <script src="js/passport.js"></script>
     <script src="js/voice-engine.js"></script>
+    <script src="js/story-slides.js"></script>
     <script src="js/core-engine.js"></script>
     <script src="js/main.js"></script>
 

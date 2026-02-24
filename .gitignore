@@ -1,2 +1,5 @@
 workshops/.DS_Store
 workshops/**/.DS_Store
+node_modules/
+dist/
+.vite/

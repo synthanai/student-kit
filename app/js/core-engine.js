@@ -2,6 +2,7 @@
    CORE Engine — Conversational Profiling
    Adaptive questions, hidden direction detection
    LLM-powered with manual fallback
+   v2: Emotional warmth, name memory, phase awareness
    ═══════════════════════════════════════ */
 
 const CoreEngine = (() => {
@@ -11,6 +12,8 @@ const CoreEngine = (() => {
     let conversationHistory = [];
     let answers = {};
     let isProcessing = false;
+    let studentName = '';
+    let studentField = '';
 
     async function loadQuestions() {
         if (questionBank) return questionBank;
@@ -26,6 +29,8 @@ const CoreEngine = (() => {
         answers = {};
         currentPhase = 0;
         currentQuestion = 0;
+        studentName = '';
+        studentField = '';
 
         // Add system prompt to conversation
         conversationHistory.push({
@@ -34,6 +39,40 @@ const CoreEngine = (() => {
         });
 
         return bank.opening.greeting;
+    }
+
+    // Extract name from the student's opening answer
+    function extractStudentInfo(text) {
+        // Common patterns: "I'm Ravi", "My name is Priya", "Ravi, CS, 2nd year"
+        const namePatterns = [
+            /(?:i'?m|my name is|i am|this is)\s+([A-Z][a-z]+)/i,
+            /^([A-Z][a-z]+)[\s,]/,
+            /^([A-Z][a-z]+)$/
+        ];
+        for (const p of namePatterns) {
+            const m = text.match(p);
+            if (m) { studentName = m[1]; break; }
+        }
+
+        // Extract field of study
+        const fieldPatterns = [
+            /(?:studying|study|course|doing|in)\s+(?:b\.?a\.?|b\.?sc\.?|b\.?e\.?|b\.?tech\.?|m\.?a\.?|m\.?sc\.?)?\s*([A-Za-z\s]+?)(?:\s*,|\s*\.|$)/i,
+            /(?:CS|IT|ECE|EEE|Mech|Civil|Bio|Chem|Physics|Maths|English|Tamil|Commerce|CA|MBA)/i
+        ];
+        for (const p of fieldPatterns) {
+            const m = text.match(p);
+            if (m) { studentField = m[1] || m[0]; break; }
+        }
+
+        // Fallback: use first capitalized word as name
+        if (!studentName) {
+            const words = text.split(/[\s,]+/);
+            const cap = words.find(w => /^[A-Z][a-z]{2,}/.test(w));
+            if (cap) studentName = cap;
+        }
+
+        answers.name = studentName || 'Student';
+        answers.field = studentField || '';
     }
 
     async function processAnswer(userText) {
@@ -46,6 +85,11 @@ const CoreEngine = (() => {
 
             // Store user answer
             conversationHistory.push({ role: 'user', content: userText });
+
+            // Extract student info from first answer
+            if (currentPhase === 0 && currentQuestion === 0 && !studentName) {
+                extractStudentInfo(userText);
+            }
 
             // Direction detection on user answer
             const phase = phases[currentPhase];
@@ -61,7 +105,9 @@ const CoreEngine = (() => {
             }
 
             // Determine next action
-            const isShort = userText.trim().split(/\s+/).length < 15;
+            const wordCount = userText.trim().split(/\s+/).length;
+            const isShort = wordCount < 15;
+            const isRich = wordCount > 40;
             const hasPhase = currentPhase < phases.length;
 
             if (hasPhase) {
@@ -72,7 +118,11 @@ const CoreEngine = (() => {
                 if (isShort && currentQ && currentQ.follow_up_thin && !answers[currentQ.id + '_probed']) {
                     answers[currentQ.id + '_probed'] = true;
 
-                    const response = await getNextResponse(currentQ.follow_up_thin);
+                    const response = await getNextResponse(currentQ.follow_up_thin, {
+                        phase: phase.id,
+                        isProbe: true,
+                        richAnswer: false
+                    });
                     isProcessing = false;
                     return { text: response, done: false, progress: getProgress() };
                 }
@@ -84,7 +134,6 @@ const CoreEngine = (() => {
                 while (currentQuestion < phaseQuestions.length) {
                     const nextQ = phaseQuestions[currentQuestion];
                     if (nextQ.condition) {
-                        // Skip conditional questions unless needed
                         if (nextQ.condition === 'ask_if_origin_needs_depth' && !needsMoreDepth()) {
                             currentQuestion++;
                             continue;
@@ -103,19 +152,30 @@ const CoreEngine = (() => {
                     currentQuestion = 0;
 
                     if (currentPhase >= phases.length) {
-                        // All phases complete, synthesize
+                        // All phases complete — synthesize
                         const result = await synthesize();
                         isProcessing = false;
                         return { text: result.message, done: true, profile: result.profile, progress: 100 };
                     }
 
-                    // Transition message + first question of new phase
+                    // Phase transition
                     const nextPhase = phases[currentPhase];
                     const nextQ = nextPhase.questions[0];
                     const transition = nextPhase.transition || '';
                     const questionText = formatQuestion(nextQ);
 
-                    const response = await getNextResponse(transition + '\n\n' + questionText);
+                    // Emotional safety nudge before sensitive phases
+                    let prefix = '';
+                    if (nextPhase.id === 'origin') {
+                        prefix = getEmotionalSafetyNudge('origin');
+                    } else if (nextPhase.id === 'endurance') {
+                        prefix = getEmotionalSafetyNudge('endurance');
+                    }
+
+                    const response = await getNextResponse(
+                        (prefix ? prefix + '\n\n' : '') + transition + '\n\n' + questionText,
+                        { phase: nextPhase.id, isTransition: true, richAnswer: isRich }
+                    );
                     isProcessing = false;
                     return { text: response, done: false, progress: getProgress() };
                 }
@@ -124,8 +184,10 @@ const CoreEngine = (() => {
                 const nextQ = phaseQuestions[currentQuestion];
                 const questionText = formatQuestion(nextQ);
 
-                // Use LLM for adaptive response or fallback to template
-                const response = await getNextResponse(questionText);
+                const response = await getNextResponse(questionText, {
+                    phase: phase.id,
+                    richAnswer: isRich
+                });
                 isProcessing = false;
                 return { text: response, done: false, progress: getProgress() };
             }
@@ -149,22 +211,51 @@ const CoreEngine = (() => {
         return text;
     }
 
-    async function getNextResponse(promptText) {
-        // Try LLM-enhanced response
+    function getEmotionalSafetyNudge(phaseId) {
+        if (phaseId === 'origin') {
+            return `These next questions are about what shaped you. Some of this might be personal. ${studentName ? studentName + ', ' : ''}share only what feels right, and feel free to type instead of speaking if that's easier.`;
+        }
+        if (phaseId === 'endurance') {
+            return "Almost done. This last part is about your line in the sand, the thing you'd never compromise. Be honest with yourself here.";
+        }
+        return '';
+    }
+
+    async function getNextResponse(promptText, context = {}) {
         try {
             conversationHistory.push({ role: 'assistant', content: promptText });
 
+            const phaseContext = context.phase ? `Current phase: ${context.phase.toUpperCase()}.` : '';
+            const nameContext = studentName ? `The student's name is ${studentName}.` : '';
+            const richContext = context.richAnswer
+                ? 'Their previous answer was rich and detailed — acknowledge that warmly before moving on.'
+                : context.isProbe
+                    ? 'Their previous answer was brief. Probe gently with curiosity, not pressure.'
+                    : '';
+            const transitionContext = context.isTransition
+                ? 'This is a phase transition. Acknowledge what you\'ve learned so far, then introduce the new topic warmly.'
+                : '';
+
+            const systemPrompt = `You are continuing a profiling conversation. ${nameContext} ${phaseContext}
+
+INSTRUCTIONS:
+- Acknowledge the student's previous answer briefly and naturally (1-2 sentences). ${richContext} ${transitionContext}
+- Then ask the next question. ONE question at a time.
+- Weave example answer types naturally into the question. DO NOT list them as bullets.
+- Be warm and curious, like a mentor who genuinely wants to understand.
+- Use their name occasionally (not every message).
+- If they shared something emotional, honor it before moving on.
+- Keep your response under 100 words.
+- Speak naturally, not robotically. This is a conversation, not a form.`;
+
             const response = await LLMClient.chat([
                 ...conversationHistory,
-                {
-                    role: 'system',
-                    content: 'You are continuing a profiling conversation. Acknowledge the student\'s previous answer briefly and naturally (1 sentence), then ask the next question. Weave example answer types naturally into the question. Be warm and curious. ONE question at a time.'
-                },
+                { role: 'system', content: systemPrompt },
                 {
                     role: 'user',
-                    content: `The prepared next question is: "${promptText}"\n\nAdapt this question to flow naturally from the conversation. Keep the core intent but make it conversational. Include example answer types naturally.`
+                    content: `The prepared next question is: "${promptText}"\n\nAdapt this question to flow naturally from the conversation. Keep the core intent but make it conversational.`
                 }
-            ], { maxTokens: 500, temperature: 0.7 });
+            ], { maxTokens: 500, temperature: 0.75 });
 
             // Replace the template with LLM-adapted version
             conversationHistory[conversationHistory.length - 1].content = response;
@@ -188,7 +279,8 @@ const CoreEngine = (() => {
 
             // Merge LLM synthesis with direction detection
             const profile = {
-                name: answers.name || 'Student',
+                name: studentName || answers.name || 'Student',
+                field_of_study: studentField || '',
                 ...profileJSON,
                 direction
             };
@@ -197,22 +289,27 @@ const CoreEngine = (() => {
             await ProfileStore.saveProfile('core', profile);
             await ProfileStore.saveConversation('core', conversationHistory);
 
-            const message = `Here's your CORE Profile:\n\n` +
-                `🔥 CALLING: ${profile.core?.calling || profile.calling || '...'}\n` +
-                `🌱 ORIGIN: ${profile.core?.origin || profile.origin || '...'}\n` +
-                `⚡ REASON: ${profile.core?.reason || profile.reason || '...'}\n` +
-                `🛡️ ENDURANCE: ${profile.core?.endurance || profile.endurance || '...'}\n\n` +
-                `✨ ${profile.essence || ''}\n\n` +
+            // Build the reveal message with Tamil phases
+            const calling = profile.core?.calling || profile.calling || '...';
+            const origin = profile.core?.origin || profile.origin || '...';
+            const reason = profile.core?.reason || profile.reason || '...';
+            const endurance = profile.core?.endurance || profile.endurance || '...';
+
+            const message = `${studentName ? studentName + ', here' : 'Here'}'s your CORE Profile:\n\n` +
+                `🔥 அழைப்பு CALLING: ${calling}\n\n` +
+                `🌱 மூலம் ORIGIN: ${origin}\n\n` +
+                `⚡ காரணம் REASON: ${reason}\n\n` +
+                `🛡️ தாங்கும் நிலை ENDURANCE: ${endurance}\n\n` +
+                (profile.essence ? `✨ ${profile.essence}\n\n` : '') +
                 `Your ARIVAR Profile Card is ready. Tap "View Card" to see it.`;
 
             return { message, profile };
         } catch (err) {
             console.error('Synthesis failed:', err);
-            // Fallback: build profile from raw answers
             const fallbackProfile = buildFallbackProfile();
             await ProfileStore.saveProfile('core', fallbackProfile);
             return {
-                message: 'I\'ve captured your answers. Your Profile Card is ready, though I couldn\'t fully process them with AI. Tap "View Card" to see it.',
+                message: `${studentName ? studentName + ', I' : 'I'}'ve captured your answers. Your Profile Card is ready. Tap "View Card" to see it.`,
                 profile: fallbackProfile
             };
         }
@@ -221,7 +318,8 @@ const CoreEngine = (() => {
     function buildFallbackProfile() {
         const direction = DirectionDetector.getAlignment();
         return {
-            name: answers.name || 'Student',
+            name: studentName || answers.name || 'Student',
+            field_of_study: studentField || '',
             core: {
                 calling: answers.C1 || answers.C2 || '(pending)',
                 origin: answers.O1 || answers.O2 || '(pending)',
@@ -237,7 +335,6 @@ const CoreEngine = (() => {
     }
 
     function needsMoreDepth() {
-        // Ask O3 if origin answers were thin
         const o1 = answers.O1 || '';
         const o2 = answers.O2 || '';
         return (o1.split(/\s+/).length < 20 && o2.split(/\s+/).length < 20);
@@ -246,7 +343,6 @@ const CoreEngine = (() => {
     function isDirectionAmbiguous() {
         const scores = DirectionDetector.getScores();
         const sorted = Object.values(scores).sort((a, b) => b - a);
-        // Ambiguous if top two scores are within 10 points
         return (sorted[0] - sorted[1]) < 10;
     }
 

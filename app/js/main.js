@@ -224,6 +224,66 @@
         }
     });
 
+    // ─── Story Slides ───
+    let currentSlides = [];
+    let currentSlideIndex = 0;
+
+    document.getElementById('btn-view-stories').addEventListener('click', async () => {
+        const section = document.getElementById('story-slides-section');
+        const isVisible = section.style.display !== 'none';
+
+        if (isVisible) {
+            section.style.display = 'none';
+            return;
+        }
+
+        // Load profile and generate slides
+        const profile = await ProfileStore.loadProfile('core');
+        if (!profile || !profile.core) {
+            alert('Complete your CORE profile first.');
+            return;
+        }
+
+        currentSlides = StorySlides.generateAll(profile);
+        currentSlideIndex = 0;
+
+        // Render tabs
+        const tabsEl = document.getElementById('slide-tabs');
+        tabsEl.innerHTML = currentSlides.map((s, i) =>
+            `<button class="slide-tab ${i === 0 ? 'active' : ''}" data-idx="${i}">${s.label}</button>`
+        ).join('');
+
+        // Tab click handlers
+        tabsEl.querySelectorAll('.slide-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                currentSlideIndex = parseInt(tab.dataset.idx);
+                showSlide(currentSlideIndex);
+                tabsEl.querySelectorAll('.slide-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        showSlide(0);
+        section.style.display = 'flex';
+    });
+
+    function showSlide(idx) {
+        const preview = document.getElementById('slide-preview');
+        preview.innerHTML = currentSlides[idx].svg;
+    }
+
+    document.getElementById('btn-slide-download').addEventListener('click', async () => {
+        if (!currentSlides.length) return;
+        const slide = currentSlides[currentSlideIndex];
+        await StorySlides.downloadSlide(slide.svg, `arivar-${slide.type}.png`);
+    });
+
+    document.getElementById('btn-slide-share').addEventListener('click', async () => {
+        if (!currentSlides.length) return;
+        const slide = currentSlides[currentSlideIndex];
+        await StorySlides.shareSlide(slide.svg, `My ARIVAR ${slide.label}`);
+    });
+
     // ─── Passport export ───
     document.getElementById('btn-export-json').addEventListener('click', () => {
         Passport.exportJSON();
@@ -364,6 +424,27 @@
         const profile = await ProfileStore.getProfile();
         const container = document.getElementById('card-container');
         CardRenderer.render(profile, container);
+
+        // Show tier info
+        const tierInfoEl = document.getElementById('tier-info');
+        if (profile && profile.core && typeof RarityEngine !== 'undefined') {
+            const tier = RarityEngine.getTierFromProfile(profile);
+            const breakdown = RarityEngine.getBreakdown(profile);
+
+            document.getElementById('tier-badge').innerHTML =
+                `<span style="color:${tier.colour};border:1px solid ${tier.colour};padding:4px 12px;border-radius:12px;">${tier.tamil} ${tier.english}</span>`;
+            document.getElementById('tier-score').textContent =
+                `Rarity Score: ${tier.score}/100 · ${tier.description}`;
+
+            const bdEl = document.getElementById('tier-breakdown');
+            bdEl.innerHTML = breakdown.map(b =>
+                `<span class="label">${b.label}</span><span class="value">${b.value}</span><span class="pts">+${b.points}</span>`
+            ).join('');
+
+            tierInfoEl.style.display = 'block';
+        } else {
+            tierInfoEl.style.display = 'none';
+        }
 
         // Show upgrade button if not all PICs done
         const upgradeBtn = document.getElementById('btn-upgrade-profile');

@@ -19,11 +19,17 @@ const CardRenderer = (() => {
         const coreText = `${profile.core.calling}|${profile.core.origin}|${profile.core.reason}|${profile.core.endurance}`;
         const kolamSVG = KolamHash.generate(coreText, colours, stage);
 
-        const tierInfo = getTier(stage);
+        // Calculate rarity tier
+        const tier = (typeof RarityEngine !== 'undefined')
+            ? RarityEngine.getTierFromProfile(profile)
+            : getTier(stage);
 
         const card = document.createElement('div');
         card.className = 'profile-card';
         card.style.background = colours.base;
+        if (tier.glow && tier.glow !== 'none') {
+            card.style.boxShadow = tier.glow;
+        }
 
         card.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CARD_WIDTH} ${CARD_HEIGHT}"
@@ -34,19 +40,14 @@ const CardRenderer = (() => {
                         <stop offset="50%" stop-color="transparent"/>
                         <stop offset="100%" stop-color="${hexToRgba(colours.secondary, 0.08)}"/>
                     </linearGradient>
-                    <linearGradient id="border-grad" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stop-color="${colours.primary}"/>
-                        <stop offset="100%" stop-color="${colours.secondary}"/>
-                    </linearGradient>
                 </defs>
 
                 <!-- Background -->
                 <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" rx="16" fill="#1a1410"/>
                 <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" rx="16" fill="url(#card-bg)"/>
 
-                <!-- Border -->
-                <rect x="2" y="2" width="${CARD_WIDTH - 4}" height="${CARD_HEIGHT - 4}" rx="14"
-                    fill="none" stroke="url(#border-grad)" stroke-width="1" opacity="0.5"/>
+                <!-- Tier-specific border -->
+                ${(typeof RarityEngine !== 'undefined') ? RarityEngine.getBorderSVG(tier, CARD_WIDTH, CARD_HEIGHT) : `<rect x="2" y="2" width="${CARD_WIDTH - 4}" height="${CARD_HEIGHT - 4}" rx="14" fill="none" stroke="url(#border-grad)" stroke-width="1" opacity="0.5"/>`}
 
                 <!-- Header -->
                 <text x="${CARD_WIDTH / 2}" y="28" text-anchor="middle"
@@ -86,11 +87,8 @@ const CardRenderer = (() => {
                 <!-- Stage Stars -->
                 ${renderStars(stage, 360, colours)}
 
-                <!-- Tier -->
-                <text x="${CARD_WIDTH / 2}" y="400" text-anchor="middle"
-                    font-family="'Noto Sans Tamil', sans-serif" font-size="9" fill="${tierInfo.colour}" opacity="0.7">
-                    ${tierInfo.tamil}
-                </text>
+                <!-- Tier Badge -->
+                ${(typeof RarityEngine !== 'undefined') ? RarityEngine.getBadgeSVG(tier, CARD_WIDTH / 2, 400) : `<text x="${CARD_WIDTH / 2}" y="400" text-anchor="middle" font-family="'Noto Sans Tamil', sans-serif" font-size="9" fill="${tier.colour || '#7a6e5e'}" opacity="0.7">${tier.tamil || ''}</text>`}
             </svg>
         `;
 

@@ -1,22 +1,52 @@
 {
-    "name": "ARIVAR Profile Builder",
+    "name": "ARIVAR – Know Yourself",
     "short_name": "ARIVAR",
     "description": "Discover your CORE identity. No signup. No data collection. Your profile stays on your device.",
-    "start_url": "/",
+    "start_url": "./index.html",
+    "scope": "./",
     "display": "standalone",
     "background_color": "#1a1410",
     "theme_color": "#c28840",
     "orientation": "portrait",
+    "lang": "en",
+    "dir": "ltr",
+    "categories": [
+        "education",
+        "lifestyle",
+        "productivity"
+    ],
     "icons": [
         {
             "src": "assets/icons/icon-192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "assets/icons/icon-512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Start CORE Discovery",
+            "short_name": "CORE",
+            "description": "Begin your identity profiling journey",
+            "url": "./index.html#chat",
+            "icons": [
+                {
+                    "src": "assets/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
         }
     ]
 }

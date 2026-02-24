@@ -743,6 +743,107 @@ body {
     color: var(--text-muted);
 }
 
+/* ─── Story Slides ─── */
+.story-slides-section {
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.slide-tabs {
+    display: flex;
+    gap: var(--space-xs);
+    overflow-x: auto;
+    padding-bottom: var(--space-xs);
+    -webkit-overflow-scrolling: touch;
+}
+
+.slide-tab {
+    padding: var(--space-xs) var(--space-md);
+    background: var(--bg-surface);
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition-fast);
+}
+
+.slide-tab.active {
+    background: var(--gold);
+    color: var(--bg-primary);
+    border-color: var(--gold);
+}
+
+.slide-preview {
+    aspect-ratio: 9 / 16;
+    max-height: 400px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-dim);
+}
+
+.slide-preview svg {
+    width: 100%;
+    height: 100%;
+}
+
+.slide-actions {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    align-items: center;
+}
+
+/* ─── Tier Info ─── */
+.tier-info {
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+}
+
+.tier-badge {
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.tier-score {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+}
+
+.tier-breakdown {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 4px 12px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: left;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.tier-breakdown .label {
+    opacity: 0.6;
+}
+
+.tier-breakdown .value {
+    color: var(--text-primary);
+}
+
+.tier-breakdown .pts {
+    color: var(--gold);
+    font-weight: 600;
+}
+
 /* ─── Card View ─── */
 .card-view-header {
     display: flex;
