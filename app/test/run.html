@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIVAR CORE Test Runner — 33 Students</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            overflow: auto;
+            background: #1a1410;
+        }
+
+        #app {
+            max-width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .test-header {
+            text-align: center;
+            padding: 32px 16px;
+            border-bottom: 1px solid #8a6030;
+        }
+
+        .test-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #f0e6d6;
+        }
+
+        .test-header p {
+            color: #b8a88e;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .test-controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            padding: 16px;
+            flex-wrap: wrap;
+        }
+
+        .test-stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            padding: 0 16px 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            background: #2a231b;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #c28840;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #7a6e5e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .test-log {
+            max-width: 800px;
+            margin: 16px auto;
+            padding: 0 16px;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #b8a88e;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #241e18;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .log-entry {
+            margin: 4px 0;
+        }
+
+        .log-entry.error {
+            color: #c0392b;
+        }
+
+        .log-entry.success {
+            color: #5d8a4e;
+        }
+
+        .log-entry.info {
+            color: #4ecdc4;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            padding: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .card-result {
+            background: #241e18;
+            border: 1px solid #332a20;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card-result.processing {
+            border-color: #c28840;
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-border {
+
+            0%,
+            100% {
+                border-color: #332a20;
+            }
+
+            50% {
+                border-color: #c28840;
+            }
+        }
+
+        .card-result.done {
+            border-color: #5d8a4e;
+        }
+
+        .card-result.error {
+            border-color: #c0392b;
+        }
+
+        .card-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-result-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #f0e6d6;
+        }
+
+        .card-result-meta {
+            font-size: 0.75rem;
+            color: #7a6e5e;
+        }
+
+        .card-result-direction {
+            display: flex;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+
+        .direction-badge {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.7rem;
+        }
+
+        .direction-badge.north {
+            background: #4ecdc422;
+            color: #4ecdc4;
+        }
+
+        .direction-badge.east {
+            background: #e07a3a22;
+            color: #e07a3a;
+        }
+
+        .direction-badge.south {
+            background: #5d8a4e22;
+            color: #5d8a4e;
+        }
+
+        .direction-badge.west {
+            background: #4a6fa522;
+            color: #4a6fa5;
+        }
+
+        .card-render-area {
+            display: flex;
+            justify-content: center;
+            min-height: 420px;
+            align-items: center;
+        }
+
+        .card-result-profile {
+            background: #1a1410;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.8rem;
+            color: #b8a88e;
+            line-height: 1.5;
+        }
+
+        .card-result-profile strong {
+            color: #c28840;
+        }
+
+        .card-result-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .cost-tracker {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #2a231b;
+            border: 1px solid #c28840;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            color: #f0e6d6;
+            z-index: 200;
+        }
+
+        .cost-tracker .cost-value {
+            font-weight: 700;
+            color: #c28840;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="test-header">
+            <h1>ARIVAR CORE Test Runner</h1>
+            <p>33 Tamil Nadu Students × Full CORE Conversation × Real LLM × Card Generation</p>
+        </div>
+
+        <div class="test-controls">
+            <button class="btn-primary" id="btn-run-all" style="width:auto;padding:12px 32px;">
+                ▶ Run All 33 Students
+            </button>
+            <button class="btn-secondary" id="btn-download-all" disabled>
+                📥 Download All Profiles
+            </button>
+            <button class="btn-secondary" id="btn-stop" disabled>
+                ⏹ Stop
+            </button>
+        </div>
+
+        <div class="test-stats">
+            <div class="stat">
+                <div class="stat-value" id="stat-total">0</div>
+                <div class="stat-label">Total</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="stat-done">0</div>
+                <div class="stat-label">Done</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="stat-errors">0</div>
+                <div class="stat-label">Errors</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="stat-calls">0</div>
+                <div class="stat-label">API Calls</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="stat-cost">$0.00</div>
+                <div class="stat-label">Est. Cost</div>
+            </div>
+        </div>
+
+        <div class="test-log" id="test-log"></div>
+
+        <div class="cards-grid" id="cards-grid"></div>
+    </div>
+
+    <div class="cost-tracker">
+        Budget: <span class="cost-value" id="budget-remaining">$5.00</span> remaining
+    </div>
+
+    <!-- Load the actual PWA modules -->
+    <script src="../js/profile-store.js"></script>
+    <script src="../js/kolam-hash.js"></script>
+    <script src="../js/direction-detector.js"></script>
+    <script src="../js/llm-client.js"></script>
+    <script src="../js/card-renderer.js"></script>
+    <script src="../js/passport.js"></script>
+
+    <script>
+        (async function () {
+            // ─── Config ───
+            const API_KEY = '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';
+            const MODEL = 'google/gemini-2.5-flash';
+            const DELAY_MS = 3000;
+            const BUDGET_LIMIT = 5.00;
+            const API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+
+            // ─── State ───
+            let totalCalls = 0;
+            let estimatedCost = 0;
+            let results = [];
+            let shouldStop = false;
+
+            // ─── Load personas ───
+            const personasResp = await fetch('personas.json');
+            const personasData = await personasResp.json();
+            const personas = personasData.personas;
+
+            document.getElementById('stat-total').textContent = personas.length;
+
+            // ─── Load CORE questions ───
+            const questionsResp = await fetch('../data/core-questions.json');
+            const questionBank = await questionsResp.json();
+
+            // ─── UI helpers ───
+            function log(msg, type = '') {
+                const el = document.getElementById('test-log');
+                const entry = document.createElement('div');
+                entry.className = `log-entry ${type}`;
+                entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+                el.appendChild(entry);
+                el.scrollTop = el.scrollHeight;
+            }
+
+            function updateStats() {
+                document.getElementById('stat-done').textContent = results.filter(r => r.status === 'done').length;
+                document.getElementById('stat-errors').textContent = results.filter(r => r.status === 'error').length;
+                document.getElementById('stat-calls').textContent = totalCalls;
+                document.getElementById('stat-cost').textContent = `$${estimatedCost.toFixed(2)}`;
+                document.getElementById('budget-remaining').textContent = `$${(BUDGET_LIMIT - estimatedCost).toFixed(2)}`;
+            }
+
+            // ─── LLM Call (direct, with cost tracking) ───
+            async function callLLM(messages, maxTokens = 2000) {
+                totalCalls++;
+                updateStats();
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'HTTP-Referer': 'https://arivar.synthanai.com',
+                        'X-Title': 'ARIVAR CORE Test'
+                    },
+                    body: JSON.stringify({
+                        model: MODEL,
+                        messages,
+                        max_tokens: maxTokens,
+                        temperature: 0.7
+                    })
+                });
+
+                if (!response.ok) {
+                    const errText = await response.text();
+                    throw new Error(`API ${response.status}: ${errText}`);
+                }
+
+                const data = await response.json();
+
+                // Track cost from usage
+                if (data.usage) {
+                    const inputCost = (data.usage.prompt_tokens / 1000000) * 0.15;
+                    const outputCost = (data.usage.completion_tokens / 1000000) * 0.60;
+                    estimatedCost += inputCost + outputCost;
+                    updateStats();
+                }
+
+                if (estimatedCost >= BUDGET_LIMIT) {
+                    throw new Error('BUDGET LIMIT REACHED');
+                }
+
+                return data.choices[0].message.content;
+            }
+
+            function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+            // ─── Process one student ───
+            async function processStudent(persona, cardEl) {
+                log(`Processing ${persona.name} (${persona.field}, ${persona.college})...`, 'info');
+                cardEl.classList.add('processing');
+
+                const phases = questionBank.phases;
+                const conversationHistory = [];
+
+                // System prompt for the ARIVAR profiler
+                conversationHistory.push({
+                    role: 'system',
+                    content: questionBank.system_prompt + '\n\nSYNTHESIS FORMAT:\n' + questionBank.synthesis_prompt
+                });
+
+                // Opening: student introduces themselves
+                const studentIntro = `Hi, I'm ${persona.name}. I'm studying ${persona.field}, year ${persona.year} at ${persona.college}.`;
+                conversationHistory.push({ role: 'user', content: studentIntro });
+                log(`  ${persona.name}: "${studentIntro.substring(0, 60)}..."`, '');
+
+                // Reset direction detector for this student
+                DirectionDetector.reset();
+
+                // Go through each phase
+                for (let pi = 0; pi < phases.length; pi++) {
+                    if (shouldStop) throw new Error('Stopped by user');
+
+                    const phase = phases[pi];
+
+                    // Get the profiler's question for this phase
+                    const questionPrompt = phase.transition
+                        ? phase.transition + '\n\n' + phase.questions[0].primary + '\n\n' + phase.questions[0].example_types
+                        : phase.questions[0].primary + '\n\n' + phase.questions[0].example_types;
+
+                    // Call LLM as profiler to ask the question
+                    await sleep(DELAY_MS);
+                    const profilerQuestion = await callLLM([
+                        ...conversationHistory,
+                        {
+                            role: 'system',
+                            content: `Ask the next question naturally. The prepared question is: "${questionPrompt}". Adapt it to flow from the conversation. Include example answer types. Be warm. ONE question.`
+                        }
+                    ], 500);
+
+                    conversationHistory.push({ role: 'assistant', content: profilerQuestion });
+                    log(`  ARIVAR: "${profilerQuestion.substring(0, 80)}..."`, '');
+
+                    // Process each question in this phase
+                    for (let qi = 0; qi < phase.questions.length; qi++) {
+                        if (shouldStop) throw new Error('Stopped by user');
+                        const question = phase.questions[qi];
+
+                        // Skip conditional questions randomly (to simulate natural flow)
+                        if (question.condition && qi > 0) {
+                            if (Math.random() > 0.4) continue;
+                        }
+
+                        // Call LLM as the STUDENT to answer
+                        await sleep(DELAY_MS);
+                        const studentAnswer = await callLLM([
+                            {
+                                role: 'system',
+                                content: `You are ${persona.name}, a ${persona.age}-year-old ${persona.field} student (year ${persona.year}) at ${persona.college}.\n\nBackground: ${persona.background}\n\nPersonality: ${persona.personality}\n\nYou are answering questions about yourself in a casual profiling conversation. Answer naturally, honestly, as this person would. Use their voice, their level of formality, their references. 2-4 sentences. Don't be generic. Be SPECIFIC to this person's life.`
+                            },
+                            { role: 'user', content: conversationHistory[conversationHistory.length - 1].content }
+                        ], 300);
+
+                        conversationHistory.push({ role: 'user', content: studentAnswer });
+                        log(`  ${persona.name}: "${studentAnswer.substring(0, 80)}..."`, '');
+
+                        // Direction detection
+                        if (question.signals) {
+                            DirectionDetector.analyzeAnswer(studentAnswer, question.signals);
+                        }
+
+                        // If not last question in phase, profiler asks next
+                        if (qi < phase.questions.length - 1) {
+                            const nextQ = phase.questions[qi + 1];
+                            if (nextQ.condition && Math.random() > 0.4) continue;
+
+                            await sleep(DELAY_MS);
+                            const nextQuestion = await callLLM([
+                                ...conversationHistory,
+                                {
+                                    role: 'system',
+                                    content: `Acknowledge their answer briefly (1 sentence) then ask: "${nextQ.primary}\n\n${nextQ.example_types}". Adapt naturally. ONE question.`
+                                }
+                            ], 400);
+                            conversationHistory.push({ role: 'assistant', content: nextQuestion });
+                            log(`  ARIVAR: "${nextQuestion.substring(0, 80)}..."`, '');
+                        }
+                    }
+                }
+
+                // ─── Synthesis ───
+                log(`  Synthesizing profile for ${persona.name}...`, 'info');
+                await sleep(DELAY_MS);
+                const synthesisResponse = await callLLM([
+                    ...conversationHistory,
+                    {
+                        role: 'user',
+                        content: 'Based on our entire conversation, produce my CORE Profile now as a JSON object. Follow the synthesis format exactly. Include direction scores (north, east, south, west as 0-100), primary and secondary directions, voice analysis, and essence.'
+                    }
+                ], 1500);
+
+                // Parse profile
+                let profile;
+                try {
+                    const jsonMatch = synthesisResponse.match(/\{[\s\S]*\}/);
+                    if (jsonMatch) {
+                        profile = JSON.parse(jsonMatch[0]);
+                    } else {
+                        throw new Error('No JSON in synthesis');
+                    }
+                } catch (e) {
+                    log(`  Warning: JSON parse failed for ${persona.name}, using direction detector scores`, 'error');
+                    profile = {
+                        core: {
+                            calling: 'See conversation',
+                            origin: 'See conversation',
+                            reason: 'See conversation',
+                            endurance: 'See conversation'
+                        },
+                        essence: `${persona.name} — ${persona.field} student`,
+                        direction: DirectionDetector.getAlignment()
+                    };
+                }
+
+                // Merge direction detection scores with LLM synthesis
+                const detectedDirection = DirectionDetector.getAlignment();
+                profile.name = persona.name;
+                profile.direction = profile.direction || detectedDirection;
+                profile.stage = 1;
+                profile.persona_id = persona.id;
+                profile.expected_direction = persona.expected_direction;
+                profile.field_of_study = persona.field;
+                profile.college = persona.college;
+                profile.conversation_length = conversationHistory.length;
+                profile.created_at = new Date().toISOString();
+
+                return { profile, conversation: conversationHistory };
+            }
+
+            // ─── Create card placeholder ───
+            function createCardSlot(persona) {
+                const el = document.createElement('div');
+                el.className = 'card-result';
+                el.id = `card-${persona.id}`;
+                el.innerHTML = `
+                <div class="card-result-header">
+                    <span class="card-result-name">#${persona.id} ${persona.name}</span>
+                    <span class="card-result-meta">${persona.field}, Y${persona.year}</span>
+                </div>
+                <div class="card-result-direction">
+                    <span class="direction-badge ${persona.expected_direction.toLowerCase().split('-')[0]}">
+                        Expected: ${persona.expected_direction}
+                    </span>
+                </div>
+                <div class="card-render-area">
+                    <p style="color:#7a6e5e;">Waiting...</p>
+                </div>
+                <div class="card-result-profile"></div>
+                <div class="card-result-actions"></div>
+            `;
+                document.getElementById('cards-grid').appendChild(el);
+                return el;
+            }
+
+            // ─── Render card into slot ───
+            function renderCardInSlot(cardEl, profile) {
+                const renderArea = cardEl.querySelector('.card-render-area');
+                const profileArea = cardEl.querySelector('.card-result-profile');
+                const actionsArea = cardEl.querySelector('.card-result-actions');
+                const directionArea = cardEl.querySelector('.card-result-direction');
+
+                // Render card
+                CardRenderer.render(profile, renderArea);
+
+                // Show profile summary
+                const core = profile.core || {};
+                profileArea.innerHTML = `
+                <strong>CALLING:</strong> ${core.calling || '...'}<br>
+                <strong>ORIGIN:</strong> ${core.origin || '...'}<br>
+                <strong>REASON:</strong> ${core.reason || '...'}<br>
+                <strong>ENDURANCE:</strong> ${core.endurance || '...'}<br>
+                <strong>ESSENCE:</strong> ${profile.essence || '...'}<br>
+                <strong>DIRECTION:</strong> N:${profile.direction?.north || 0} E:${profile.direction?.east || 0} S:${profile.direction?.south || 0} W:${profile.direction?.west || 0}
+                (${profile.direction?.primary || '?'} / ${profile.direction?.secondary || '?'})
+            `;
+
+                // Show actual vs expected
+                const actual = profile.direction?.primary || '?';
+                directionArea.innerHTML = `
+                <span class="direction-badge ${profile.expected_direction.toLowerCase().split('-')[0]}">
+                    Expected: ${profile.expected_direction}
+                </span>
+                <span class="direction-badge ${actual.toLowerCase()}">
+                    Actual: ${actual}-${profile.direction?.secondary || '?'}
+                </span>
+            `;
+
+                // Actions
+                actionsArea.innerHTML = `
+                <button class="btn-secondary" onclick="downloadProfile(${profile.persona_id})">📥 Profile</button>
+                <button class="btn-secondary" onclick="copyPassport(${profile.persona_id})">🛂 Passport</button>
+            `;
+
+                cardEl.classList.remove('processing');
+                cardEl.classList.add('done');
+            }
+
+            // ─── Run all ───
+            document.getElementById('btn-run-all').addEventListener('click', async () => {
+                document.getElementById('btn-run-all').disabled = true;
+                document.getElementById('btn-stop').disabled = false;
+                shouldStop = false;
+                results = [];
+
+                // Create all card slots
+                document.getElementById('cards-grid').innerHTML = '';
+                const cardEls = personas.map(p => createCardSlot(p));
+
+                log('Starting ARIVAR CORE Test Run: 33 students', 'info');
+                log(`Model: ${MODEL} | Delay: ${DELAY_MS}ms | Budget: $${BUDGET_LIMIT}`, 'info');
+
+                for (let i = 0; i < personas.length; i++) {
+                    if (shouldStop) {
+                        log('Stopped by user.', 'error');
+                        break;
+                    }
+
+                    if (estimatedCost >= BUDGET_LIMIT) {
+                        log('BUDGET LIMIT REACHED. Stopping.', 'error');
+                        break;
+                    }
+
+                    const persona = personas[i];
+                    const cardEl = cardEls[i];
+
+                    try {
+                        const { profile, conversation } = await processStudent(persona, cardEl);
+                        results.push({ status: 'done', persona, profile, conversation });
+
+                        renderCardInSlot(cardEl, profile);
+                        log(`✓ ${persona.name} complete (${profile.direction?.primary}/${profile.direction?.secondary})`, 'success');
+                    } catch (err) {
+                        results.push({ status: 'error', persona, error: err.message });
+                        cardEl.classList.remove('processing');
+                        cardEl.classList.add('error');
+                        cardEl.querySelector('.card-render-area').innerHTML = `<p style="color:#c0392b;">${err.message}</p>`;
+                        log(`✗ ${persona.name} failed: ${err.message}`, 'error');
+                    }
+
+                    updateStats();
+                }
+
+                log(`\nTest run complete. ${results.filter(r => r.status === 'done').length}/${personas.length} successful.`, 'info');
+                log(`Total API calls: ${totalCalls} | Estimated cost: $${estimatedCost.toFixed(2)}`, 'info');
+
+                document.getElementById('btn-run-all').disabled = false;
+                document.getElementById('btn-stop').disabled = true;
+                document.getElementById('btn-download-all').disabled = false;
+            });
+
+            // ─── Stop ───
+            document.getElementById('btn-stop').addEventListener('click', () => {
+                shouldStop = true;
+                log('Stopping after current student...', 'error');
+            });
+
+            // ─── Download all ───
+            document.getElementById('btn-download-all').addEventListener('click', () => {
+                const exportData = {
+                    format: 'arivar-test-results',
+                    version: '1.0',
+                    model: MODEL,
+                    total_calls: totalCalls,
+                    estimated_cost: estimatedCost,
+                    timestamp: new Date().toISOString(),
+                    results: results.map(r => ({
+                        status: r.status,
+                        persona: { id: r.persona.id, name: r.persona.name, field: r.persona.field, expected_direction: r.persona.expected_direction },
+                        profile: r.profile || null,
+                        error: r.error || null
+                    }))
+                };
+
+                const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `arivar-test-results-${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+
+            // ─── Per-student download/copy ───
+            window.downloadProfile = function (personaId) {
+                const result = results.find(r => r.profile?.persona_id === personaId);
+                if (!result) return;
+                const blob = new Blob([JSON.stringify(result.profile, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `arivar-profile-${result.persona.name.replace(/\s/g, '_')}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+            };
+
+            window.copyPassport = function (personaId) {
+                const result = results.find(r => r.profile?.persona_id === personaId);
+                if (!result) return;
+                const core = result.profile.core || {};
+                const passport = `# Who I Am (ARIVAR Profile)\n\n## My CORE\n- CALLING: ${core.calling}\n- ORIGIN: ${core.origin}\n- REASON: ${core.reason}\n- ENDURANCE: ${core.endurance}\n\n## My Essence\n${result.profile.essence}`;
+                navigator.clipboard.writeText(passport).then(() => {
+                    alert('Passport copied!');
+                });
+            };
+
+        })();
+    </script>
+</body>
+
+</html>

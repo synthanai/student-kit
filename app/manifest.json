@@ -1,0 +1,22 @@
+{
+    "name": "ARIVAR Profile Builder",
+    "short_name": "ARIVAR",
+    "description": "Discover your CORE identity. No signup. No data collection. Your profile stays on your device.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1a1410",
+    "theme_color": "#c28840",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "assets/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

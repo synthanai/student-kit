@@ -1,0 +1,376 @@
+{
+    "meta": {
+        "description": "33 Tamil Nadu student personas for ARIVAR CORE testing. Designed via SPAR Deep Ultra to cover all NEWS compass combinations and diverse demographics.",
+        "directions_covered": {
+            "North-primary": 8,
+            "East-primary": 9,
+            "South-primary": 8,
+            "West-primary": 8
+        }
+    },
+    "personas": [
+        {
+            "id": 1,
+            "name": "Kavitha Murugan",
+            "age": 19,
+            "field": "Computer Science",
+            "year": 2,
+            "college": "Anna University, Chennai",
+            "background": "First-generation college student from Thoothukudi fishing village. Father is a fisherman, mother runs a small provision store. Got here on pure merit and a government scholarship. Dreams of building tech that helps coastal communities predict weather and fish migration. Obsessed with apps and prototyping. Stays up coding side projects while classmates sleep.",
+            "expected_direction": "North-East",
+            "personality": "Intensely driven, impatient with theory, wants to BUILD something. Gets frustrated when lectures are abstract. Speaks Tamil at home, English at college. Protective of her family's dignity."
+        },
+        {
+            "id": 2,
+            "name": "Arun Selvakumar",
+            "age": 21,
+            "field": "Mechanical Engineering",
+            "year": 3,
+            "college": "PSG College of Technology, Coimbatore",
+            "background": "From a middle-class Coimbatore family. Father runs a small CNC workshop. Grew up around machines. Naturally good with his hands. Quiet and methodical. Not flashy. Gets satisfaction from making something work properly. Joined the SAE Baja racing team and became the go-to person for fixing things nobody else could figure out.",
+            "expected_direction": "South-West",
+            "personality": "Patient, practical, speaks less than he thinks. Trusts process over inspiration. Uncomfortable with praise. Values reliability above everything."
+        },
+        {
+            "id": 3,
+            "name": "Priya Ramanathan",
+            "age": 20,
+            "field": "English Literature",
+            "year": 2,
+            "college": "Stella Maris College, Chennai",
+            "background": "From a Tamil Brahmin family in Mylapore. Grew up surrounded by books, Carnatic music concerts, and conversations about philosophy. Her grandfather was a Tamil scholar. She sees patterns in stories that connect to real life. Writes poetry that her professors call 'unusually mature'. Keeps a journal since age 14.",
+            "expected_direction": "West-North",
+            "personality": "Reflective, articulate, sees connections others miss. Sometimes accused of overthinking. Prefers depth to breadth. Finds small talk exhausting but deep conversations energising."
+        },
+        {
+            "id": 4,
+            "name": "Mohammed Irfan",
+            "age": 22,
+            "field": "Commerce",
+            "year": 4,
+            "college": "Loyola College, Chennai",
+            "background": "From a business family in Trichy. Father runs a textile wholesale business. Irfan has been doing GST filings since he was 16. He sees business patterns everywhere. Started a campus delivery service in first year that now employs 8 students. Pragmatic to the bone but dreams of scaling his operations beyond Tamil Nadu.",
+            "expected_direction": "South-North",
+            "personality": "Street-smart, numbers-oriented, reads people well. Impatient with academic theory that doesn't connect to real business. Loyal to his team. Will not cut corners on quality."
+        },
+        {
+            "id": 5,
+            "name": "Deepa Chandrasekaran",
+            "age": 20,
+            "field": "Nursing",
+            "year": 2,
+            "college": "CMC Vellore",
+            "background": "From a village near Dindigul. Mother is an ASHA health worker. Deepa grew up watching her mother walk 10km to help pregnant women in remote areas. Chose nursing not because it was expected but because she saw what healthcare gaps look like up close. Fierce about patient dignity. Already organising fellow students to volunteer at the government hospital.",
+            "expected_direction": "East-South",
+            "personality": "Fierce protector, speaks up when patients are treated poorly. Action-oriented. Does not tolerate incompetence in healthcare. Warm with patients, sharp with authority."
+        },
+        {
+            "id": 6,
+            "name": "Karthik Natarajan",
+            "age": 21,
+            "field": "Civil Engineering",
+            "year": 3,
+            "college": "NIT Trichy",
+            "background": "From a government officer family in Salem. Quiet achiever. Got into NIT on the first attempt. Fascinated by how cities are designed and why some places feel alive while others feel dead. Has been mapping urban decay patterns in Salem as a personal project. Wants to design cities that actually serve people, not politicians.",
+            "expected_direction": "North-West",
+            "personality": "Visionary but grounded in data. Collects evidence before forming opinions. Speaks thoughtfully. Frustrated by corruption in infrastructure. Values integrity deeply."
+        },
+        {
+            "id": 7,
+            "name": "Lakshmi Venkatesh",
+            "age": 19,
+            "field": "Biotechnology",
+            "year": 1,
+            "college": "SASTRA University, Thanjavur",
+            "background": "From an agricultural family in the Cauvery Delta. Watched her father's crops fail three years in a row due to water disputes. Chose biotech to find scientific solutions to agricultural problems. Quietly brilliant in labs. Her professors already noticed her precision. She doesn't talk about changing the world, she just works.",
+            "expected_direction": "South-East",
+            "personality": "Quiet intensity. Lets her work speak. Gets angry about agricultural injustice but channels it into research. Meticulous, disciplined, not interested in shortcuts."
+        },
+        {
+            "id": 8,
+            "name": "Vijay Prakash",
+            "age": 22,
+            "field": "Political Science",
+            "year": 4,
+            "college": "Madras Christian College, Chennai",
+            "background": "From a Dalit family in Villupuram. First in his family to reach college. Active in student politics since day one. Reads Ambedkar, Periyar, and contemporary political theory. Debates anyone, anywhere. Has been detained twice for leading peaceful protests about hostel conditions. Sees systemic injustice with clarity that unsettles comfortable people.",
+            "expected_direction": "East-North",
+            "personality": "Fiery, articulate, confrontational when needed. Deep reader. Will not back down from a fight he believes in. Loyal to his community. Distrusts institutions but works within them strategically."
+        },
+        {
+            "id": 9,
+            "name": "Sangeetha Balasubramanian",
+            "age": 20,
+            "field": "Architecture",
+            "year": 2,
+            "college": "School of Architecture and Planning, Anna University",
+            "background": "From a traditional Thanjavur family. Grew up in a 200-year-old ancestral house with Chettinad-style architecture. The contrast between that beauty and modern Chennai apartments haunts her. She photographs abandoned temples and traditional houses before they're demolished. Wants to build spaces that honour Tamil identity while being functional for modern life.",
+            "expected_direction": "North-South",
+            "personality": "Creative but practical. Thinks in 3D. Gets frustrated when design schools teach only Western aesthetics. Passionate about Tamil architectural heritage. Stubborn about quality."
+        },
+        {
+            "id": 10,
+            "name": "Rajesh Kumar",
+            "age": 21,
+            "field": "Electronics and Communication",
+            "year": 3,
+            "college": "Thiagarajar College of Engineering, Madurai",
+            "background": "From a lower-middle-class family in Madurai. Father is a temple maalai (garland) maker. Rajesh discovered electronics by fixing broken radios for neighbours. Self-taught soldering by age 12. Built a solar-powered phone charger for his mother's street-side shop. Practical problem-solver with zero interest in abstract research.",
+            "expected_direction": "South",
+            "personality": "Hands-on, no-nonsense. Gets immense satisfaction from making things work with limited resources. Speaks Tamil predominantly. Humble but quietly proud of what he's built."
+        },
+        {
+            "id": 11,
+            "name": "Ananya Krishnan",
+            "age": 19,
+            "field": "Data Science",
+            "year": 1,
+            "college": "IIT Madras (BS programme, online)",
+            "background": "From a tech-savvy family in Adyar, Chennai. Mother is an IT professional. Ananya has been around computers since birth. Fascinated by how data reveals hidden truths. She sees numbers as stories. Built a COVID dashboard for her school at age 16 that went viral locally. Wants to use data to expose inequality.",
+            "expected_direction": "West-East",
+            "personality": "Analytical but passionate about justice. Sees data as a tool for truth-telling. Quiet intensity. Questions everything. Uncomfortable with answers that feel too simple."
+        },
+        {
+            "id": 12,
+            "name": "Suresh Pandian",
+            "age": 23,
+            "field": "Tamil Literature",
+            "year": 5,
+            "college": "University of Madras",
+            "background": "From Nagercoil, near the tip of India. Grew up bilingual Tamil-Malayalam. Chose Tamil literature when everyone told him to do engineering. Studies Sangam poetry and finds it more relevant than anything written today. His thesis connects Thirukkural verses to modern organisational theory. Writes for a Tamil literary magazine.",
+            "expected_direction": "West",
+            "personality": "Deeply intellectual, contemplative, sometimes isolated by his interests. Finds wisdom in ancient texts that his peers ignore. Not interested in career outcomes, interested in understanding. Patient with complexity."
+        },
+        {
+            "id": 13,
+            "name": "Divya Arumugam",
+            "age": 20,
+            "field": "Journalism",
+            "year": 2,
+            "college": "Asian College of Journalism, Chennai",
+            "background": "From a lower-middle-class family in Kanchipuram. Father weaves silk sarees, a dying trade. Divya chose journalism because she believes the stories of people like her father are never told. She has already published freelance pieces about artisan communities. Gutsy, goes after the story even when told not to.",
+            "expected_direction": "East-West",
+            "personality": "Fearless, empathetic, reads voraciously. Gets angry about stories that go untold. Confronts power with evidence. Deep researcher who also has gut instincts about people."
+        },
+        {
+            "id": 14,
+            "name": "Hariharan Sundaram",
+            "age": 21,
+            "field": "Physics",
+            "year": 3,
+            "college": "IIT Madras",
+            "background": "From an academic family in T. Nagar, Chennai. Both parents are professors. Grew up going to science exhibitions and reading about the universe. Fascinated by quantum mechanics not for career but for the sheer beauty of it. Spends hours thinking about problems that have no practical application. His professors say he has genuine theoretical instinct.",
+            "expected_direction": "West-North",
+            "personality": "Abstract thinker, playful with ideas, serious about rigour. Comfortable being alone with a problem for weeks. Not competitive, genuinely curious. Finds beauty in equations."
+        },
+        {
+            "id": 15,
+            "name": "Nithya Ravi",
+            "age": 22,
+            "field": "Social Work",
+            "year": 4,
+            "college": "Loyola College, Chennai",
+            "background": "From Cuddalore, devastated by the 2004 tsunami. Lost her uncle. That event defined her trajectory. Has been volunteering with disaster relief organisations since she was 15. Now interning at an NGO in Chennai's slums. Sees social work not as charity but as justice. Has organised three community health camps on her own initiative.",
+            "expected_direction": "East-South",
+            "personality": "Compassionate but tough. Not naive about the system. Organiser by nature. Gets things done by building coalitions. Angry at the right things. Does not accept 'that's just how it is' as an answer."
+        },
+        {
+            "id": 16,
+            "name": "Bharath Kannan",
+            "age": 20,
+            "field": "Artificial Intelligence & ML",
+            "year": 2,
+            "college": "SRM Institute, Kattankulathur",
+            "background": "From a farming family in Karur who saved everything for his education. First encounter with AI was a YouTube video about self-driving cars. Now obsessed with what AI can do for agriculture. Building a plant disease detection app as his first project. Works part-time at a coding bootcamp to fund his expenses.",
+            "expected_direction": "North-South",
+            "personality": "Optimist, builder, sees AI as a tool for specific problems not abstract innovation. Practical dreamer. Works harder than anyone and doesn't complain. Values his roots."
+        },
+        {
+            "id": 17,
+            "name": "Meenakshi Devi",
+            "age": 19,
+            "field": "Psychology",
+            "year": 1,
+            "college": "Women's Christian College, Chennai",
+            "background": "From a conservative family in Madurai. Fought to study psychology instead of medicine. Fascinated by why people think the way they do. Already reading Carl Rogers and Victor Frankl. Notices emotional patterns in people that others miss. Keeps detailed observations about human behaviour in a notebook.",
+            "expected_direction": "West-South",
+            "personality": "Observant, empathetic, reads people like books. Quiet but firm when it matters. Values understanding over judging. Patient listener who asks the right questions at the right time."
+        },
+        {
+            "id": 18,
+            "name": "Saravanan Pandi",
+            "age": 23,
+            "field": "Law",
+            "year": 5,
+            "college": "Tamil Nadu Dr. Ambedkar Law University, Chennai",
+            "background": "From a working-class family in Sivakasi (fireworks town). Uncle lost his hand in a factory accident with no compensation. That injustice drove Saravanan to law. Now specialises in labour rights. Has already assisted in two PIL filings. Believes the law is a weapon for the powerless when wielded correctly.",
+            "expected_direction": "East",
+            "personality": "Relentless, strategic, patient in preparation but explosive in argument. Reads case law like others read novels. Will not represent a cause he doesn't believe in. Intimidating in moot courts."
+        },
+        {
+            "id": 19,
+            "name": "Revathi Sundar",
+            "age": 20,
+            "field": "Design (Communication Design)",
+            "year": 2,
+            "college": "IDC, IIT Bombay (from Chennai)",
+            "background": "From a middle-class family in Tambaram, Chennai. Self-taught graphic designer since age 14 using free software. Won a national design competition at 17. Got into IDC on pure portfolio strength. Now exploring how Tamil typography can work in modern digital interfaces. Wants to make Tamil beautiful in tech, not just functional.",
+            "expected_direction": "North",
+            "personality": "Creative visionary, thinks in visual systems. Restless with convention. Wants everything she touches to be beautiful AND functional. Strong opinions about aesthetics. Defends Tamil visual identity fiercely."
+        },
+        {
+            "id": 20,
+            "name": "Gowtham Murugesan",
+            "age": 21,
+            "field": "Agricultural Engineering",
+            "year": 3,
+            "college": "Tamil Nadu Agricultural University, Coimbatore",
+            "background": "From a farming family in Erode. Three generations of turmeric farmers. Chose agricultural engineering to modernise the family farm without losing the knowledge his grandfather carries. Building a drip irrigation optimization system as his final year project. Gets up at 4am to call his father about crop conditions.",
+            "expected_direction": "South-West",
+            "personality": "Grounded, patient, deeply connected to the land. Values traditional knowledge AND modern science. Speaks with authority about farming. Does not romanticise rural life but will not let anyone disrespect it either."
+        },
+        {
+            "id": 21,
+            "name": "Swetha Mohan",
+            "age": 22,
+            "field": "Finance (MBA)",
+            "year": 1,
+            "college": "IIM Tiruchirappalli",
+            "background": "From a family of bank officers in Tirunelveli. Grew up hearing dinner conversations about loan defaults and branch audits. She sees money as a system to be understood, not chased. Topped her undergraduate in economics. Interested in microfinance and how small amounts of capital can unlock enormous potential in rural Tamil Nadu.",
+            "expected_direction": "West-South",
+            "personality": "Analytical, systematic, sees patterns in economic data. Not flashy, not a 'finance bro'. Genuinely believes finance should serve people, not extract from them. Meticulous with details."
+        },
+        {
+            "id": 22,
+            "name": "Ashwin Raghunath",
+            "age": 20,
+            "field": "Film Studies",
+            "year": 2,
+            "college": "L.V. Prasad Film Academy (affiliate), Chennai",
+            "background": "From a cinephile family in Karaikudi. Grew up watching Mani Ratnam and analysing every frame. Started making short films on his phone at 15. His first short about a bus conductor won a state-level youth film award. Believes cinema is the most powerful tool for social change in Tamil Nadu.",
+            "expected_direction": "North-East",
+            "personality": "Intense storyteller, sees the world through frames. Provocative in his work but gentle in person. Believes every person has a story worth filming. Gets angry when Tamil cinema is dismissed as masala."
+        },
+        {
+            "id": 23,
+            "name": "Pooja Selvam",
+            "age": 21,
+            "field": "Environmental Science",
+            "year": 3,
+            "college": "Bharathidasan University, Trichy",
+            "background": "From Cuddalore industrial belt. Grew up near SIPCOT industrial area. Childhood asthma from pollution. Started collecting water samples from local rivers at 17 to prove pollution levels. Data showed contamination 4x legal limits. Submitted findings to the state pollution board. Now conducting a formal research project on groundwater contamination.",
+            "expected_direction": "East-West",
+            "personality": "Evidence-driven activist. Does not protest without data. Methodical in research, fierce in advocacy. Does not trust corporations or government but works with both when data demands it."
+        },
+        {
+            "id": 24,
+            "name": "Dinesh Babu",
+            "age": 22,
+            "field": "Pharmacy",
+            "year": 4,
+            "college": "JSS College of Pharmacy, Ooty",
+            "background": "From a modest family in Tirunelveli. Chose pharmacy because he watched his diabetic grandmother struggle with medication access. Now focused on affordable drug formulation. Conducts free health awareness camps in villages during semester breaks. Methodical researcher who reads every clinical trial before forming an opinion.",
+            "expected_direction": "South",
+            "personality": "Methodical, service-oriented, believes healthcare is a right not a privilege. Quiet worker who lets results speak. Reliable. The person everyone trusts with responsibility. Does not seek credit."
+        },
+        {
+            "id": 25,
+            "name": "Tharani Karunakaran",
+            "age": 19,
+            "field": "Mathematics",
+            "year": 1,
+            "college": "Loyola College, Chennai",
+            "background": "From a temple priest family in Kumbakonam. Grew up watching her father perform complex Vedic mathematical calculations for temple rituals. Realised at 13 that mathematics is both spiritual and scientific. Chose pure mathematics when everyone expected her to become an engineer. Finds deep satisfaction in proofs.",
+            "expected_direction": "West",
+            "personality": "Contemplative, finds beauty in abstraction. Comfortable with uncertainty. Patient with difficult problems. Not interested in applications, interested in truth. Finds noise and rush distressing."
+        },
+        {
+            "id": 26,
+            "name": "Manikandan Rasu",
+            "age": 21,
+            "field": "Automobile Engineering",
+            "year": 3,
+            "college": "Madras Institute of Technology, Chromepet",
+            "background": "From an auto-rickshaw driver's family in Ambattur. Grew up in the back of his father's auto, learning about engines by sound. Can diagnose engine problems by ear. Joined MIT because APJ Abdul Kalam studied there. Building an electric conversion kit for auto-rickshaws as his project. Wants to make EVs accessible to working-class drivers.",
+            "expected_direction": "North-South",
+            "personality": "Practical innovator. Dreams big but builds small and iterates. Values affordability and accessibility. Fiercely proud of his working-class roots. Not interested in luxury engineering."
+        },
+        {
+            "id": 27,
+            "name": "Iswarya Narayanan",
+            "age": 20,
+            "field": "Biochemistry",
+            "year": 2,
+            "college": "University of Madras",
+            "background": "From a modest family in Thanjavur. Her mother is a schoolteacher. Iswarya loved biology since childhood but got fascinated when she learned about CRISPR in a YouTube video. Now obsessed with gene editing's potential to solve sickle cell disease, which affects families in her community. Spends every free hour in the lab.",
+            "expected_direction": "North-West",
+            "personality": "Quietly ambitious, enormous inner drive. Doesn't announce her goals but works relentlessly toward them. Reads research papers for fun. Values precision and intellectual honesty."
+        },
+        {
+            "id": 28,
+            "name": "Vignesh Ramachandran",
+            "age": 23,
+            "field": "Public Administration",
+            "year": 5,
+            "college": "University of Madras",
+            "background": "Preparing for UPSC while completing his MA. From a government teacher family in Thanjavur. Saw how one good district collector transformed his hometown. That image drives him. Has been studying administrative systems, reading governance case studies, and understanding how bureaucracy can serve or betray people. Disciplined study routine of 10+ hours daily.",
+            "expected_direction": "South-East",
+            "personality": "Disciplined, strategic, long-term thinker. Believes change happens from inside the system, not by protesting outside it. Patient, methodical, willing to wait years for the right position of influence."
+        },
+        {
+            "id": 29,
+            "name": "Abinaya Murugesan",
+            "age": 19,
+            "field": "Bharatanatyam (Dance, BFA)",
+            "year": 1,
+            "college": "Kalakshetra Foundation, Chennai",
+            "background": "From a non-Brahmin family in Thanjavur. Fought caste prejudice to learn Bharatanatyam. Her teacher saw raw talent and sponsored her training. Got into Kalakshetra on pure skill. Believes dance is a form of storytelling and protest, not just performance. Choreographing a piece about water rights in the Cauvery delta.",
+            "expected_direction": "East-North",
+            "personality": "Fierce, expressive, channels anger into art. Breaks conventions without being reckless. Sees dance as resistance. Disciplined in practice but wild in creativity."
+        },
+        {
+            "id": 30,
+            "name": "Karthikeyan Thangaraj",
+            "age": 22,
+            "field": "Information Technology",
+            "year": 4,
+            "college": "Kongu Engineering College, Erode",
+            "background": "From a joint family in Erode. First coder in a family of textile workers. Learned programming through free online courses. Built the college's event management app that 3000+ students use. Pragmatic developer who values clean code and user experience. Already has a job offer but considering a startup idea around digitising agricultural supply chains.",
+            "expected_direction": "South-North",
+            "personality": "Reliable builder, ships on time, hates overengineering. Practical about what technology can and cannot do. Values working software over perfect plans. Good team leader because he leads by doing."
+        },
+        {
+            "id": 31,
+            "name": "Janani Sekar",
+            "age": 20,
+            "field": "Sociology",
+            "year": 2,
+            "college": "Presidency College, Chennai",
+            "background": "From an inter-caste family in Coimbatore. Her parents' marriage was opposed by both families. That experience made her obsessed with understanding social structures, caste dynamics, and why communities resist change. She reads ethnographies like novels. Conducting a field study on inter-caste marriages in urban Tamil Nadu.",
+            "expected_direction": "West-East",
+            "personality": "Sharp observer, asks uncomfortable questions. Sees through social performance. Patient in research but impatient with hypocrisy. Writes field notes with literary quality."
+        },
+        {
+            "id": 32,
+            "name": "Prasanna Venkatesh",
+            "age": 21,
+            "field": "Electrical Engineering",
+            "year": 3,
+            "college": "College of Engineering Guindy, Anna University",
+            "background": "From a power station operator's family in Neyveli. Grew up watching the thermal power plant and wondering about cleaner energy. Now obsessed with solar microgrids for rural electrification. Built a prototype microgrid for his village community center during summer break. Combines technical skill with deep concern for energy access.",
+            "expected_direction": "North-South",
+            "personality": "Technical visionary with grounded execution. Sees renewable energy as justice, not just engineering. Patient prototyper. Iterates until it works. Values scalability and affordability over elegance."
+        },
+        {
+            "id": 33,
+            "name": "Yamuna Devi",
+            "age": 22,
+            "field": "Medicine (MBBS)",
+            "year": 4,
+            "college": "Madras Medical College, Chennai",
+            "background": "From a nurse's family in Ramanathapuram. Mother worked double shifts for years to fund her education. Grew up in hospital corridors. Chose psychiatry as her specialisation interest because she noticed how many patients' physical symptoms had emotional roots that nobody asked about. Volunteers at a mental health helpline on weekends.",
+            "expected_direction": "West-South",
+            "personality": "Deeply empathetic, exceptional listener, sees the whole patient not just the symptoms. Values silence and presence. Does not rush to diagnose. Believes healing starts with being heard."
+        }
+    ]
+}

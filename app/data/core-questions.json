@@ -1,0 +1,555 @@
+{
+    "version": "1.0",
+    "description": "ARIVAR CORE profiling question bank with adaptive branching and hidden direction detection",
+    "meta": {
+        "estimated_duration_minutes": 10,
+        "total_phases": 4,
+        "questions_per_phase": "2-3 (adaptive)",
+        "direction_detection": "Embedded signals map to NEWS compass (North/Air, East/Fire, South/Earth, West/Water)"
+    },
+    "system_prompt": "You are an ARIVAR Profile Builder — a warm, curious guide helping a student discover their CORE identity. You ask ONE question at a time in natural conversation. You adapt follow-ups based on their answers. When answers are thin, probe deeper with examples. When answers are rich, move on. You NEVER mention directions, elements, compass, NEWS, or SPAR. You track direction signals internally. After all phases, you produce a structured CORE Profile with direction alignment scores.\n\nDO NOT list all answer options as a menu. Weave 2-3 example answer types naturally into the question so the student understands what kind of response you're looking for. Adapt your language to their maturity and field of study.\n\nPRINCIPLES:\n- Profiler, not therapist. Curious, never clinical.\n- Questions about STUDENT LIFE — identity, motivation, growth.\n- ONE question at a time. Conversation, not form.\n- Mix direct questions with scenarios.\n- Thin answers → probe with 'Give me an example'. Rich answers → move on.\n- Track direction signals internally using the signal tags.\n- 10-15 minutes total. Don't drag.",
+    "opening": {
+        "greeting": "Hey! 👋 I'm going to help you discover your CORE — the four pillars of who you really are.\n\nThis isn't a quiz. There are no right answers. Just honest ones. I'll ask you questions about what drives you, what shaped you, and what you'd never compromise. Takes about 10 minutes.\n\nAt the end, you'll get your ARIVAR Profile Card — a unique visual identity you can share and use with any AI tool.\n\nLet's start. What's your name, what are you studying, and what year are you in?",
+        "signals": [
+            "field_of_study",
+            "year_level",
+            "name"
+        ]
+    },
+    "phases": [
+        {
+            "id": "calling",
+            "name": "Calling",
+            "tamil": "அழைப்பு",
+            "purpose": "What energises them. What problems they gravitate toward. Their natural pull.",
+            "questions": [
+                {
+                    "id": "C1",
+                    "primary": "Think about the last time you got completely absorbed in something — lost track of time, forgot to eat. What were you doing?",
+                    "example_types": "Some people say it's coding a project at 2am, others say it's organising an event, some say it's deep in a conversation about ideas, and some say it's making something with their hands.",
+                    "follow_up_thin": "Can you walk me through what specifically about it grabbed you? Was it solving a puzzle, creating something, leading people, or understanding something deeply?",
+                    "follow_up_rich": "What's the pattern there? Has that pull been consistent, or is it new?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "creating something new",
+                                "imagining possibilities",
+                                "building future",
+                                "designing",
+                                "innovating",
+                                "what could be"
+                            ],
+                            "east": [
+                                "challenging norms",
+                                "arguing",
+                                "debating",
+                                "questioning authority",
+                                "disrupting",
+                                "fixing what's broken"
+                            ],
+                            "south": [
+                                "building something real",
+                                "making it work",
+                                "practical results",
+                                "helping people directly",
+                                "solving concrete problems"
+                            ],
+                            "west": [
+                                "understanding deeply",
+                                "reading",
+                                "connecting ideas",
+                                "seeing patterns",
+                                "researching",
+                                "reflecting"
+                            ]
+                        },
+                        "core": [
+                            "calling_domain",
+                            "calling_energy_source",
+                            "calling_frequency"
+                        ]
+                    }
+                },
+                {
+                    "id": "C2",
+                    "primary": "If you had a full year with no exams, no pressure, and enough money — what would you spend it doing?",
+                    "example_types": "Some people would build a startup, others would travel and document stories, some would volunteer in their community, and some would disappear into a library and study everything they've been curious about.",
+                    "follow_up_thin": "No filter — what's the version that excites you, not the version that sounds impressive?",
+                    "follow_up_rich": "What does that tell you about what you're really drawn to? Is your degree aligned with that, or is it parallel?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "start something",
+                                "build",
+                                "create",
+                                "launch",
+                                "explore new territory",
+                                "pioneer"
+                            ],
+                            "east": [
+                                "change something",
+                                "challenge system",
+                                "disrupt",
+                                "protest",
+                                "reform",
+                                "fight for"
+                            ],
+                            "south": [
+                                "make something work",
+                                "help people",
+                                "build community",
+                                "practical impact",
+                                "teach",
+                                "serve"
+                            ],
+                            "west": [
+                                "learn everything",
+                                "study",
+                                "research",
+                                "write",
+                                "understand",
+                                "reflect",
+                                "travel to understand"
+                            ]
+                        },
+                        "core": [
+                            "calling_passion",
+                            "calling_alignment"
+                        ]
+                    }
+                },
+                {
+                    "id": "C3",
+                    "primary": "When you imagine doing work that truly matters to you in five years, what does the scene look like?",
+                    "example_types": "Some people see themselves leading a team on something bold. Others see themselves deep in a lab or studio. Some see themselves in front of people, teaching or speaking. Some see themselves quietly making systems work behind the scenes.",
+                    "follow_up_thin": "Close your eyes for a second. Where are you? Who's around you? What are you actually DOING in that picture?",
+                    "follow_up_rich": "Is that picture something you've always had, or has it changed recently?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "leading something bold",
+                                "vision",
+                                "frontier",
+                                "something nobody has done",
+                                "future"
+                            ],
+                            "east": [
+                                "challenging status quo",
+                                "shaking things up",
+                                "confronting",
+                                "in the fire",
+                                "debate"
+                            ],
+                            "south": [
+                                "making things work",
+                                "serving community",
+                                "practical impact",
+                                "reliable systems",
+                                "grounded"
+                            ],
+                            "west": [
+                                "deep work",
+                                "writing",
+                                "research",
+                                "lab",
+                                "studio",
+                                "reflection",
+                                "understanding"
+                            ]
+                        },
+                        "core": [
+                            "calling_vision",
+                            "calling_timeframe"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "origin",
+            "name": "Origin",
+            "tamil": "மூலம்",
+            "purpose": "What shaped their worldview. Formative experiences. The lens through which they see everything.",
+            "transition": "Your calling tells me where you're headed. Now I want to understand where you're coming FROM. The experiences that shaped how you see the world.",
+            "questions": [
+                {
+                    "id": "O1",
+                    "primary": "Think about a moment — could be a conversation, an event, a failure, a realisation — that changed how you see the world. What happened?",
+                    "example_types": "For some people it's moving to a new place and realising their world was small. For others it's a failure that taught them something books couldn't. Some point to a person — a teacher, a grandparent, a stranger — who said something that stuck.",
+                    "follow_up_thin": "Don't overthink it — even small moments count. A comment someone made, a book that hit different, a day that shifted something inside you.",
+                    "follow_up_rich": "How old were you? And looking back, do you think that moment made you more cautious or more brave?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "opened my eyes to possibility",
+                                "saw a bigger world",
+                                "inspired",
+                                "imagined something different"
+                            ],
+                            "east": [
+                                "made me angry",
+                                "unfair",
+                                "injustice",
+                                "I couldn't accept it",
+                                "fought back",
+                                "confronted"
+                            ],
+                            "south": [
+                                "taught me a practical lesson",
+                                "learned the hard way",
+                                "grounded me",
+                                "made me realistic"
+                            ],
+                            "west": [
+                                "pattern I noticed",
+                                "understood something deep",
+                                "moment of clarity",
+                                "everything connected"
+                            ]
+                        },
+                        "core": [
+                            "origin_event",
+                            "origin_age",
+                            "origin_impact"
+                        ]
+                    }
+                },
+                {
+                    "id": "O2",
+                    "primary": "What's something you understand because of where you grew up or how you were raised — something that people from different backgrounds might not get?",
+                    "example_types": "Some people say 'I understand the value of money because we didn't have much.' Others say 'I know what it means to be between two cultures.' Some say 'I learned to read people early because my household was unpredictable.' And some say 'I grew up in a place where community wasn't optional.'",
+                    "follow_up_thin": "Think about it this way — what would someone FROM your background notice about the world that an outsider wouldn't?",
+                    "follow_up_rich": "Has that understanding been a strength in your studies, or more of an invisible thing that people don't see?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "bigger world",
+                                "multiple perspectives",
+                                "cross-cultural",
+                                "saw beyond local"
+                            ],
+                            "east": [
+                                "survival",
+                                "adversity",
+                                "fighting for space",
+                                "proving yourself",
+                                "resilience through conflict"
+                            ],
+                            "south": [
+                                "practical wisdom",
+                                "resource management",
+                                "community values",
+                                "hands-on knowledge",
+                                "common sense"
+                            ],
+                            "west": [
+                                "cultural depth",
+                                "family wisdom",
+                                "traditions",
+                                "patterns across generations",
+                                "stories"
+                            ]
+                        },
+                        "core": [
+                            "origin_context",
+                            "origin_lens",
+                            "origin_strength"
+                        ]
+                    }
+                },
+                {
+                    "id": "O3",
+                    "condition": "ask_if_origin_needs_depth",
+                    "primary": "When you look back at the moment that shaped you most, what stands out more — what you FELT or what you LEARNED?",
+                    "example_types": "Some people are driven by the feeling — 'I never want to feel that helpless again.' Others are driven by the lesson — 'That's when I learned that preparation beats talent.'",
+                    "follow_up_thin": "Is it more of an emotional anchor or an intellectual one?",
+                    "follow_up_rich": "And does that feeling or lesson show up in your daily decisions, or only in big moments?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "imagined a different future because of it",
+                                "it showed me what was possible"
+                            ],
+                            "east": [
+                                "felt anger or determination",
+                                "refused to accept it",
+                                "committed to change"
+                            ],
+                            "south": [
+                                "learned a practical lesson",
+                                "became more disciplined",
+                                "adjusted approach"
+                            ],
+                            "west": [
+                                "saw a deeper pattern",
+                                "understood something about human nature",
+                                "gained wisdom"
+                            ]
+                        },
+                        "core": [
+                            "origin_type",
+                            "origin_frequency"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "reason",
+            "name": "Reason",
+            "tamil": "காரணம்",
+            "purpose": "What keeps them going when it's hard. Their fuel. Their why.",
+            "transition": "You've told me what pulls you forward and what shaped your lens. Now the hardest one — what keeps you going when everything is against you?",
+            "questions": [
+                {
+                    "id": "R1",
+                    "primary": "Think about a time when you genuinely wanted to quit something — an assignment, a commitment, a relationship with your studies. You didn't quit. What kept you going?",
+                    "example_types": "Some people say pride — 'I'm not a quitter.' Others say fear — 'I couldn't face my parents.' Some say purpose — 'I remembered why I started.' And some say stubbornness — 'I just refused to let it win.'",
+                    "follow_up_thin": "Be honest — was it something inside you, or something external like pressure from others?",
+                    "follow_up_rich": "Is that the same fuel every time, or does it change?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "I saw what this could become",
+                                "the vision kept me going",
+                                "I could imagine the result"
+                            ],
+                            "east": [
+                                "I refused to lose",
+                                "proving doubters wrong",
+                                "anger",
+                                "competitive fire",
+                                "couldn't accept failure"
+                            ],
+                            "south": [
+                                "people were counting on me",
+                                "it was the right thing to do",
+                                "responsibility",
+                                "commitment",
+                                "duty"
+                            ],
+                            "west": [
+                                "I remembered similar struggles that ended well",
+                                "I've survived worse",
+                                "patience",
+                                "trust the process"
+                            ]
+                        },
+                        "core": [
+                            "reason_fuel",
+                            "reason_internal_external"
+                        ]
+                    }
+                },
+                {
+                    "id": "R2",
+                    "primary": "What would make you DROP everything you're doing right now — your degree, your plans — and go do something completely different?",
+                    "example_types": "Some people say 'an opportunity to build something I believe in.' Others say 'if I found out my current path was meaningless.' Some say 'nothing — I finish what I start.' And some say 'if someone I trust showed me a better path.'",
+                    "follow_up_thin": "Has that feeling ever come close to happening? Even a flicker?",
+                    "follow_up_rich": "What does that tell you about what matters more to you — the goal or the path?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "a bigger opportunity",
+                                "something revolutionary",
+                                "once-in-a-lifetime chance",
+                                "new frontier"
+                            ],
+                            "east": [
+                                "realising it was wrong",
+                                "discovering injustice",
+                                "moral conflict",
+                                "can't stomach inauthenticity"
+                            ],
+                            "south": [
+                                "nothing — I finish what I start",
+                                "won't abandon commitments",
+                                "stay the course unless data says otherwise"
+                            ],
+                            "west": [
+                                "someone I deeply trust showed me a better understanding",
+                                "a profound realisation",
+                                "new wisdom"
+                            ]
+                        },
+                        "core": [
+                            "reason_priority",
+                            "reason_flexibility"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "endurance",
+            "name": "Endurance",
+            "tamil": "தாங்கும் நிலை",
+            "purpose": "What they would never compromise. Their line in the sand. Their integrity anchor.",
+            "transition": "Last one. This is about your line — the thing you'd never cross, no matter what.",
+            "questions": [
+                {
+                    "id": "E1",
+                    "primary": "What's something you would NEVER do, even if it would make your life significantly easier?",
+                    "example_types": "Some people say 'submit work that isn't mine.' Others say 'stay silent when someone is being treated unfairly.' Some say 'take a shortcut that could hurt someone else.' And some say 'pretend to believe something I don't.'",
+                    "follow_up_thin": "Think about it as: what would make you lose respect for yourself?",
+                    "follow_up_rich": "Has that line ever been tested? What happened?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "I wouldn't limit my ambition",
+                                "wouldn't settle for ordinary",
+                                "wouldn't stop dreaming"
+                            ],
+                            "east": [
+                                "I wouldn't stay silent",
+                                "wouldn't comply with what's wrong",
+                                "wouldn't submit to authority I don't respect"
+                            ],
+                            "south": [
+                                "I wouldn't cut corners",
+                                "wouldn't betray trust",
+                                "wouldn't compromise quality",
+                                "wouldn't let people down"
+                            ],
+                            "west": [
+                                "I wouldn't pretend",
+                                "wouldn't be dishonest",
+                                "wouldn't ignore what I know to be true",
+                                "wouldn't sacrifice depth for speed"
+                            ]
+                        },
+                        "core": [
+                            "endurance_line",
+                            "endurance_tested"
+                        ]
+                    }
+                },
+                {
+                    "id": "E2",
+                    "primary": "When people describe you at your BEST — who do they see? And when they describe you at your WORST — who do they see?",
+                    "example_types": "Some people's best is 'focused and unstoppable' and their worst is 'distant and cold.' Others' best is 'warm and generous' and their worst is 'a pushover.' Some are 'creative and electric' at best, 'scattered and unreliable' at worst.",
+                    "follow_up_thin": "If your closest friend were here, what would THEY say?",
+                    "follow_up_rich": "Is the best version more natural, or is it something you've built deliberately?",
+                    "signals": {
+                        "direction": {
+                            "north": {
+                                "best": [
+                                    "visionary",
+                                    "inspiring",
+                                    "electric",
+                                    "ahead of everyone"
+                                ],
+                                "worst": [
+                                    "unrealistic",
+                                    "disconnected",
+                                    "head in clouds"
+                                ]
+                            },
+                            "east": {
+                                "best": [
+                                    "brave",
+                                    "honest",
+                                    "fierce",
+                                    "unstoppable"
+                                ],
+                                "worst": [
+                                    "aggressive",
+                                    "confrontational",
+                                    "exhausting"
+                                ]
+                            },
+                            "south": {
+                                "best": [
+                                    "reliable",
+                                    "solid",
+                                    "trusted",
+                                    "grounded"
+                                ],
+                                "worst": [
+                                    "rigid",
+                                    "boring",
+                                    "stubborn",
+                                    "slow"
+                                ]
+                            },
+                            "west": {
+                                "best": [
+                                    "wise",
+                                    "deep",
+                                    "thoughtful",
+                                    "perceptive"
+                                ],
+                                "worst": [
+                                    "distant",
+                                    "overthinking",
+                                    "passive",
+                                    "detached"
+                                ]
+                            }
+                        },
+                        "core": [
+                            "endurance_identity_best",
+                            "endurance_identity_worst"
+                        ]
+                    }
+                },
+                {
+                    "id": "E3",
+                    "condition": "ask_if_direction_ambiguous",
+                    "primary": "Imagine two futures. In one, you achieved everything you wanted but nobody knows your name. In the other, everyone knows your name but you feel like a fraud. Which is worse?",
+                    "example_types": "This one tends to split people hard. Some people physically recoil at the idea of being a fraud. Others genuinely don't care about fame and are fine in the shadows.",
+                    "follow_up_thin": "Don't think about what sounds humble. Which one would actually keep you up at night?",
+                    "follow_up_rich": "What does that say about whether you're driven by impact or recognition?",
+                    "signals": {
+                        "direction": {
+                            "north": [
+                                "fraud is worse — because I need to believe in my vision"
+                            ],
+                            "east": [
+                                "fraud is worse — because authenticity is everything"
+                            ],
+                            "south": [
+                                "anonymous is fine — the work matters more than the name"
+                            ],
+                            "west": [
+                                "fraud is worse — because truth is more important than status"
+                            ]
+                        },
+                        "core": [
+                            "endurance_driver",
+                            "endurance_authenticity"
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "synthesis_prompt": "Based on the conversation, produce the student's CORE Profile in this exact structure:\n\n1. CORE PILLARS (one sentence each, using their actual words where possible):\n   - CALLING (அழைப்பு): [what energises them]\n   - ORIGIN (மூலம்): [what shaped their lens]\n   - REASON (காரணம்): [what keeps them going]\n   - ENDURANCE (தாங்கும் நிலை): [what they'd never compromise]\n\n2. ESSENCE (one sentence capturing their whole identity)\n\n3. DIRECTION ALIGNMENT (internal, not shown to student):\n   Score each direction 0-100 based on accumulated signals:\n   - north_score: [0-100]\n   - east_score: [0-100]\n   - south_score: [0-100]\n   - west_score: [0-100]\n   - primary_direction: [highest score]\n   - secondary_direction: [second highest]\n\n4. VOICE (how they naturally communicate, inferred from conversation style):\n   - tone: [formal/casual/warm/direct/reflective]\n   - structure: [stories/bullets/analytical/conversational]\n   - energy: [calm/intense/playful/measured]\n\nOutput as JSON.",
+    "output_template": {
+        "name": "",
+        "field_of_study": "",
+        "year": "",
+        "core": {
+            "calling": "",
+            "origin": "",
+            "reason": "",
+            "endurance": ""
+        },
+        "essence": "",
+        "direction": {
+            "north": 0,
+            "east": 0,
+            "south": 0,
+            "west": 0,
+            "primary": "",
+            "secondary": ""
+        },
+        "voice": {
+            "tone": "",
+            "structure": "",
+            "energy": ""
+        },
+        "version": "1.0",
+        "created_at": ""
+    }
+}

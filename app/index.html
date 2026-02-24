@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description"
+        content="Discover your CORE identity with ARIVAR. No signup. No data collection. Your profile stays on your device.">
+    <meta name="theme-color" content="#c28840">
+    <title>ARIVAR – Know Yourself</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- VIEW: Home -->
+        <section id="view-home" class="view active">
+            <header class="app-header">
+                <div class="logo">
+                    <span class="logo-tamil">அறிவர்</span>
+                    <span class="logo-english">ARIVAR</span>
+                </div>
+                <p class="tagline">Your Mind Is Yours</p>
+            </header>
+
+            <div class="home-card-preview" id="home-card-preview">
+                <div class="empty-card">
+                    <div class="kolam-placeholder"></div>
+                    <p class="empty-card-text">Your ARIVAR Profile Card</p>
+                    <p class="empty-card-sub">Answer 10 questions. Get your identity.</p>
+                </div>
+            </div>
+
+            <div class="progress-track" id="progress-track">
+                <div class="progress-item" data-phase="core">
+                    <span class="progress-dot"></span>
+                    <span class="progress-label">CORE</span>
+                </div>
+                <div class="progress-item locked" data-phase="personal">
+                    <span class="progress-dot"></span>
+                    <span class="progress-label">Personal</span>
+                </div>
+                <div class="progress-item locked" data-phase="social">
+                    <span class="progress-dot"></span>
+                    <span class="progress-label">Social</span>
+                </div>
+                <div class="progress-item locked" data-phase="professional">
+                    <span class="progress-dot"></span>
+                    <span class="progress-label">Professional</span>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="btn-start-core">
+                Discover Your CORE
+            </button>
+
+            <div class="home-features">
+                <div class="feature">
+                    <span class="feature-icon">🔒</span>
+                    <span>No signup. No data sent.</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📱</span>
+                    <span>Stays on YOUR device.</span>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">⏱️</span>
+                    <span>10 minutes. Honest answers.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: Chat (CORE + PIC profiling) -->
+        <section id="view-chat" class="view">
+            <header class="chat-header">
+                <button class="btn-back" id="btn-chat-back">←</button>
+                <div class="chat-title">
+                    <span id="chat-phase-name">CORE Discovery</span>
+                    <span id="chat-phase-tamil" class="phase-tamil">அடிப்படை</span>
+                </div>
+                <button class="btn-voice-toggle" id="btn-voice-toggle" title="ARIVAR reads questions aloud">
+                    🔊
+                </button>
+                <div class="chat-progress">
+                    <div class="chat-progress-bar" id="chat-progress-bar"></div>
+                </div>
+            </header>
+
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages injected here -->
+            </div>
+
+            <!-- Voice note playback panel (hidden by default) -->
+            <div class="voice-playback-panel" id="voice-playback" style="display:none;">
+                <button class="btn-voice-play" id="btn-voice-play">▶</button>
+                <div class="voice-waveform-static" id="voice-waveform-static"></div>
+                <span class="voice-duration" id="voice-duration">0:00</span>
+                <button class="btn-voice-discard" id="btn-voice-discard" title="Discard">✕</button>
+                <button class="btn-voice-use" id="btn-voice-use" title="Listen and type">✓ Type it</button>
+            </div>
+
+            <div class="chat-input-area">
+                <textarea id="chat-input" placeholder="Type or hold 🎙 to record..." rows="1"></textarea>
+                <button class="btn-mic" id="btn-mic" title="Hold to record a voice note">
+                    <span class="mic-icon">🎙</span>
+                    <span class="mic-recording-dot" id="mic-dot" style="display:none;"></span>
+                </button>
+                <button class="btn-send" id="btn-send">→</button>
+            </div>
+
+            <!-- Recording overlay -->
+            <div class="voice-recording-overlay" id="voice-recording-overlay" style="display:none;">
+                <div class="recording-waveform" id="recording-waveform"></div>
+                <div class="recording-timer" id="recording-timer">0:00</div>
+                <div class="recording-hint">Release to stop</div>
+            </div>
+        </section>
+
+        <!-- VIEW: Card -->
+        <section id="view-card" class="view">
+            <header class="card-view-header">
+                <button class="btn-back" id="btn-card-back">←</button>
+                <h2>Your ARIVAR Card</h2>
+                <button class="btn-share" id="btn-share">Share</button>
+            </header>
+
+            <div class="card-container" id="card-container">
+                <!-- Card rendered here by card-renderer.js -->
+            </div>
+
+            <div class="card-actions">
+                <button class="btn-secondary" id="btn-download-card">📥 Save Image</button>
+                <button class="btn-secondary" id="btn-view-passport">🛂 AI Passport</button>
+                <button class="btn-primary" id="btn-upgrade-profile" style="display:none;">
+                    Unlock Next Level →
+                </button>
+            </div>
+        </section>
+
+        <!-- VIEW: Passport -->
+        <section id="view-passport" class="view">
+            <header class="passport-header">
+                <button class="btn-back" id="btn-passport-back">←</button>
+                <h2>AI Passport</h2>
+            </header>
+
+            <p class="passport-intro">Copy your profile into any AI tool. One tap.</p>
+
+            <div class="passport-providers" id="passport-providers">
+                <!-- Provider cards injected by passport.js -->
+            </div>
+
+            <div class="passport-export">
+                <button class="btn-secondary" id="btn-export-json">📄 Export .arivar file</button>
+            </div>
+        </section>
+
+        <!-- VIEW: Settings -->
+        <section id="view-settings" class="view">
+            <header class="settings-header">
+                <button class="btn-back" id="btn-settings-back">←</button>
+                <h2>Settings</h2>
+            </header>
+            <div class="settings-list">
+                <!-- BYOK Section -->
+                <div class="setting-group">
+                    <div class="setting-group-title">🔑 Bring Your Own Key</div>
+                    <p class="setting-hint">Use your own API key for better responses. Free proxy used if no key is
+                        provided.</p>
+
+                    <div class="setting-item">
+                        <label>AI Provider</label>
+                        <select id="setting-byok-provider">
+                            <option value="">None (use free proxy)</option>
+                            <option value="gemini">Google Gemini</option>
+                            <option value="openrouter">OpenRouter</option>
+                            <option value="openai">OpenAI</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item" id="setting-byok-key-group" style="display:none;">
+                        <label id="setting-byok-key-label">API Key</label>
+                        <input type="password" id="setting-byok-key" placeholder="">
+                        <p class="setting-hint" id="setting-byok-hint"></p>
+                    </div>
+
+                    <div class="setting-status" id="setting-byok-status">
+                        <span class="status-dot status-proxy"></span>
+                        <span>Using ARIVAR free proxy</span>
+                    </div>
+                </div>
+
+                <!-- Fallback -->
+                <div class="setting-item">
+                    <label>If AI is unavailable</label>
+                    <select id="setting-fallback">
+                        <option value="proxy">Try free proxy first</option>
+                        <option value="manual">Skip AI (template mode)</option>
+                    </select>
+                </div>
+
+                <!-- Data -->
+                <div class="setting-group">
+                    <div class="setting-group-title">🗄️ Data</div>
+                    <div class="setting-item">
+                        <button class="btn-danger" id="btn-clear-data">🗑️ Clear All Data</button>
+                        <p class="setting-hint">Deletes your profile from this device. Cannot be undone.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Nav -->
+        <nav class="bottom-nav" id="bottom-nav">
+            <button class="nav-item active" data-view="home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-item" data-view="card">
+                <span class="nav-icon">🃏</span>
+                <span class="nav-label">Card</span>
+            </button>
+            <button class="nav-item" data-view="passport">
+                <span class="nav-icon">🛂</span>
+                <span class="nav-label">Passport</span>
+            </button>
+            <button class="nav-item" data-view="settings">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Settings</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="js/profile-store.js"></script>
+    <script src="js/kolam-hash.js"></script>
+    <script src="js/direction-detector.js"></script>
+    <script src="js/llm-client.js"></script>
+    <script src="js/card-renderer.js"></script>
+    <script src="js/passport.js"></script>
+    <script src="js/voice-engine.js"></script>
+    <script src="js/core-engine.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .catch(err => console.log('SW registration failed:', err));
+        }
+    </script>
+</body>
+
+</html>
