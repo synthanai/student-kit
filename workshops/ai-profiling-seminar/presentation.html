@@ -29,9 +29,9 @@
 
             --text-primary: #E5E5E5;
             --text-secondary: #A3A3A3;
-            --text-muted: #6B7280;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-amber: rgba(245, 158, 11, 0.2);
+            --text-muted: #F0F0F0;
+            --border:   transparent;
+            --border:   transparent;
 
             --font-display: 'Inter', -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
@@ -149,19 +149,19 @@
 
         .mode-badge.demo {
             color: var(--teal);
-            border-color: rgba(20, 184, 166, 0.3);
+            border:   transparent;
             background: var(--teal-glow);
         }
 
         .mode-badge.build {
             color: var(--violet);
-            border-color: rgba(139, 92, 246, 0.3);
+            border:   transparent;
             background: var(--violet-glow);
         }
 
         .mode-badge.interact {
             color: #22D3EE;
-            border-color: rgba(34, 211, 238, 0.3);
+            border:   transparent;
             background: rgba(34, 211, 238, 0.1);
         }
 
@@ -290,7 +290,7 @@
         }
 
         .prompt-block.ai-generic {
-            border-color: rgba(239, 68, 68, 0.2);
+            border:   transparent;
         }
 
         .prompt-block.ai-generic::before {
@@ -299,7 +299,7 @@
         }
 
         .prompt-block.ai-profiled {
-            border-color: rgba(20, 184, 166, 0.3);
+            border:   transparent;
         }
 
         .prompt-block.ai-profiled::before {
@@ -407,7 +407,7 @@
 
         .pic-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: none;
         }
 
         .pic-card.personal {
@@ -744,11 +744,11 @@
         }
 
         .phone.generalist {
-            border-color: rgba(239, 68, 68, 0.25);
+            border:   transparent;
         }
 
         .phone.specialist {
-            border-color: rgba(20, 184, 166, 0.3);
+            border:   transparent;
         }
 
         .phone-header {
@@ -1415,14 +1415,14 @@
                     </div>
                 </div>
                 <div class="flow-arrow" style="font-size: 24px;">→</div>
-                <div class="flow-step" style="padding: 16px 28px; border-color: rgba(20, 184, 166, 0.3);">
+                <div class="flow-step" style="padding: 16px 28px; border:   transparent;">
                     <div style="font-size: 24px; margin-bottom: 4px;">⚙️</div>
                     <strong style="font-size: 36px;color: var(--teal);">Process</strong>
                     <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">How you think it through
                     </div>
                 </div>
                 <div class="flow-arrow" style="font-size: 24px;">→</div>
-                <div class="flow-step" style="padding: 16px 28px; border-color: rgba(139, 92, 246, 0.3);">
+                <div class="flow-step" style="padding: 16px 28px; border:   transparent;">
                     <div style="font-size: 24px; margin-bottom: 4px;">📤</div>
                     <strong style="font-size: 36px;color: var(--violet);">Output</strong>
                     <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">How you express & deliver
@@ -1937,7 +1937,7 @@
         <table style="width: 100%; border-collapse: separate; border-spacing: 0 8px;">
             <tr>
                 <td
-                    style="padding: 12px 16px; background: rgba(212, 168, 83, 0.08); border-radius: 8px; border-left: 3px solid #d4a853;">
+                    style="padding: 12px 16px; background: #D4A843; border-radius: 8px; border-left: 3px solid #d4a853;">
                     <div
                         style="font-size: 22px; font-weight: 700; color: #d4a853; font-family: 'Inter', sans-serif; letter-spacing: 1px;">
                         ⚡ FASTER</div>
@@ -1967,7 +1967,7 @@
             </tr>
             <tr>
                 <td
-                    style="padding: 14px 16px; background: rgba(45, 212, 191, 0.03); border-radius: 8px; border: 1px dashed rgba(45, 212, 191, 0.25);">
+                    style="padding: 14px 16px; background: rgba(45, 212, 191, 0.03); border-radius: 8px; border: 1px dashed  transparent;">
                     <div
                         style="font-size: 22px; font-weight: 700; color: #2dd4bf; font-family: 'Inter', sans-serif; letter-spacing: 2px;">
                         ◯ COMPLETE</div>

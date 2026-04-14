@@ -7,7 +7,7 @@
 
 - [ ] Two ChatGPT Projects open (Generalist + Specialist)
 - [ ] Generalist Project: `Demo - Generalist` (empty instructions, no PIC)
-- [ ] Specialist Project: `Demo - Specialist (Priya)` (Priya's PIC pasted into Project Instructions — see `demo/sample-pic-priya.md`)
+- [ ] Specialist Project: `Demo - Specialist (Priya)` (Priya's PIC pasted into Project Instructions, see `demo/sample-pic-priya.md`)
 - [ ] Test the campus placement question in BOTH projects before the session
 - [ ] Test all 5 demo prompts in both projects before the session
 - [ ] Speaker notes toggled OFF at start (press `N` to enable when needed)
@@ -26,7 +26,7 @@
 #### Slide 1: TITLE
 ⏱ 0:00 · Let audience settle  
 🎬 Stand centre. Pause. Let the Tamil verse land.  
-🎤 Do not explain the verse — let it sit. Start with: *"AI doesn't know you. Yet."*
+🎤 Do not explain the verse, let it sit. Start with: *"AI doesn't know you. Yet."*
 
 #### Slide 2: GENERALIST BASELINE — SETUP 🛠️
 ⏱ 0:00  
@@ -36,9 +36,9 @@
 
 #### Slide 3: GENERALIST BASELINE — CREATE PROJECT 🛠️
 ⏱ 0:00  
-🎬 Walk them through creating a ChatGPT Project — call it **"Generalist"**. No instructions, blank.  
+🎬 Walk them through creating a ChatGPT Project, call it **"Generalist"**. No instructions, blank.  
 🎤 *"Not a conversation. We're creating a Project. Name it Generalist. Leave everything blank."*  
-⚠️ Some students won't find Projects — help them: sidebar → Projects → New.
+⚠️ Some students won't find Projects, help them: sidebar → Projects → New.
 
 #### Slide 4: GENERALIST BASELINE — ASK THE QUESTION 🛠️
 ⏱ 0:00  
@@ -58,7 +58,7 @@
 #### Slide 6: RECOGNITION
 ⏱ 0:02  
 🎬 Hand-raise: *"How many got an answer that could have been written for anyone?"*  
-🎤 Wait for hands — every hand should go up. *"Every hand. Because that's exactly how AI works without context."*  
+🎤 Wait for hands, every hand should go up. *"Every hand. Because that's exactly how AI works without context."*  
 ⚠️ This is powerful because they just EXPERIENCED it 30 seconds ago.
 
 #### Slide 7: REVELATION
@@ -89,7 +89,7 @@
 #### Slide 12: THE BRIDGE 🎤
 ⏱ 0:04  
 🎤 *"That profile you just saw? You're going to build your own. In about 15 minutes. Today."*  
-⚠️ Energy LIFTS. Lean forward, slightly faster. Faster/smarter/safer/complete — throw casually, don't emphasise.
+⚠️ Energy LIFTS. Lean forward, slightly faster. Faster/smarter/safer/complete, throw casually, don't emphasise.
 
 ---
 
@@ -102,17 +102,17 @@
 
 #### Slide 14: PERSONAL PROFILE 🎤
 ⏱ 0:06  
-🎬 Walk through the Personal dimension — how you think, learn, express.  
+🎬 Walk through the Personal dimension, how you think, learn, express.  
 🎤 *"This is the inner you. How you process, what energises you, how you learn best."*
 
 #### Slide 15: SOCIAL PROFILE 🎤
 ⏱ 0:07  
-🎬 Social dimension — how you relate, collaborate, communicate.  
+🎬 Social dimension, how you relate, collaborate, communicate.  
 🎤 *"This is the relational you."*
 
 #### Slide 16: PROFESSIONAL PROFILE 🎤
 ⏱ 0:08  
-🎬 Professional dimension — goals, domain, growth areas.  
+🎬 Professional dimension, goals, domain, growth areas.  
 🎤 *"This is who you're becoming."*
 
 #### Slide 17: INPUT → PROCESS → OUTPUT 🎤
@@ -131,7 +131,7 @@
 
 #### Slide 19: POLL QUESTIONS
 ⏱ 0:05  
-🎬 Quick engagement — progressive poll to gauge audience readiness.
+🎬 Quick engagement, progressive poll to gauge audience readiness.
 
 #### Slide 20: DEMO INTRO 🎮
 ⏱ 0:07 · 10 min  
@@ -148,7 +148,7 @@
 #### Slide 22: DEMO 2 — SEMINAR PREP 🎮
 ⏱ 0:11  
 🎬 **Run Demo 2**: *"I have a seminar presentation tomorrow and I don't know how to start."*  
-🎤 *"The generalist gives a template. The specialist asks questions first — because it knows this student thinks out loud."*
+🎤 *"The generalist gives a template. The specialist asks questions first, because it knows this student thinks out loud."*
 
 #### Slide 23: DEMO 3 — VIVA (COMPASS) 🎮
 ⏱ 0:14  
@@ -237,7 +237,7 @@ Use these **exact prompts** in both projects. Type in Generalist first, then Spe
 |------------|---------------------|
 | Intro - Body - Conclusion template. Impersonal. | Asks guiding questions: "What's your main argument?" Knows she processes externally. Flexible framework with clear milestones. |
 
-**Say:** *"The generalist gives a template. The specialist asks questions first — because it knows this student thinks out loud."*
+**Say:** *"The generalist gives a template. The specialist asks questions first, because it knows this student thinks out loud."*
 
 ---
 

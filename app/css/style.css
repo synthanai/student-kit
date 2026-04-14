@@ -212,11 +212,11 @@ body {
 
     0%,
     100% {
-        box-shadow: 0 0 0 0 rgba(194, 136, 64, 0);
+        box-shadow: none;
     }
 
     50% {
-        box-shadow: 0 0 20px 4px rgba(194, 136, 64, 0.15);
+        box-shadow: none;
     }
 }
 
@@ -259,7 +259,7 @@ body {
 .progress-item.active .progress-dot {
     background: var(--gold);
     border-color: var(--gold);
-    box-shadow: 0 0 8px rgba(194, 136, 64, 0.4);
+    box-shadow: none;
 }
 
 .progress-item.complete .progress-dot {
@@ -881,10 +881,7 @@ body {
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
-    box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.4),
-        0 0 0 1px var(--gold-dim),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: none;
 }
 
 /* ─── Passport View ─── */
@@ -1063,12 +1060,12 @@ body {
 
 .status-dot.status-proxy {
     background: var(--gold);
-    box-shadow: 0 0 6px rgba(194, 136, 64, 0.4);
+    box-shadow: none;
 }
 
 .status-dot.status-byok {
     background: var(--south-primary);
-    box-shadow: 0 0 6px rgba(93, 138, 78, 0.4);
+    box-shadow: none;
 }
 
 /* ─── Bottom Navigation ─── */
