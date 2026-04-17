@@ -17,6 +17,9 @@
 
 Student Kit is a collection of **open-source AI tools** designed specifically for students. Each tool (called a **kit**) is standalone, free to use, and built to solve a real student problem.
 
+> **💼 Are you an experienced working professional?**
+> If you have significant career history and leadership experience, the Student Kit isn't for you. Students discover patterns. Professionals name and leverage earned ones. Check out the **[Employee Kit](../employee-kit/README.md)** designed specifically for experienced professionals.
+
 The first kit  -  **Profile Kit**  -  helps you build three personalised AIs that actually understand how you learn, think, and work. Each profile produces its own PIC that goes into its own ChatGPT Project.
 
 > **KIT** = **K**nowledge · **I**ntuition · **T**ooling
